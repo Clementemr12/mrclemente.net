@@ -1495,7 +1495,7 @@
         const token = await state.auth0Client.getTokenSilently({
           authorizationParams: { audience: "https://alchemer-interaction-api" }
         });
-        const response = await fetch("https://tvclkybldunxpmzlfrne.supabase.co/functions/v1/Interaction-Tracking", {
+        const response = await fetch("https://oaokqzaietaaxjreobqb.supabase.co/functions/v1/Interaction-Tracking", {
           method: "POST",
           headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
           body: JSON.stringify({ action: "check", interaction_id: "single-use-prompt" })
@@ -1539,7 +1539,7 @@
           authorizationParams: { audience: "https://alchemer-interaction-api" }
         });
         if (state.authUser?.sub !== userId) throw new Error("Signed-in account changed during the request.");
-        const response = await fetch("https://tvclkybldunxpmzlfrne.supabase.co/functions/v1/Interaction-Tracking", {
+        const response = await fetch("https://oaokqzaietaaxjreobqb.supabase.co/functions/v1/Interaction-Tracking", {
           method: "POST",
           headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
           body: JSON.stringify({ action: action === "reset" ? "reset" : "list", interaction_id: "single-use-prompt" })
@@ -1647,7 +1647,7 @@
           authorizationParams: { audience: "https://alchemer-interaction-api" }
         });
         if (state.authUser?.sub !== userId) return;
-        const response = await fetch("https://tvclkybldunxpmzlfrne.supabase.co/functions/v1/Interaction-Tracking", {
+        const response = await fetch("https://oaokqzaietaaxjreobqb.supabase.co/functions/v1/Interaction-Tracking", {
           method: "POST",
           headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
           body: JSON.stringify({ action: "claim", interaction_id: "single-use-prompt" })
@@ -1774,7 +1774,7 @@
             authorizationParams: { audience: "https://alchemer-interaction-api" }
           });
           if (state.authUser?.sub !== userId) return;
-          const response = await fetch("https://tvclkybldunxpmzlfrne.supabase.co/functions/v1/Interaction-Tracking", {
+          const response = await fetch("https://oaokqzaietaaxjreobqb.supabase.co/functions/v1/Interaction-Tracking", {
             method: "POST",
             headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
             body: JSON.stringify({ action: "claim", interaction_id: "single-use-prompt" })

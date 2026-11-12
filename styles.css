@@ -1,0 +1,414 @@
+/* =========================
+   Global
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #2f3437;
+    background: #f4f5f7;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* =========================
+   Header / Navigation
+========================= */
+
+.site-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e5e8;
+}
+
+.header-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.25rem 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.site-header h1 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #25292c;
+}
+
+.site-header p {
+    margin-top: 0.1rem;
+    font-size: 0.85rem;
+    color: #7a8085;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: #62686d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #25292c;
+}
+
+/* =========================
+   Main
+========================= */
+
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+}
+
+/* =========================
+   Hero
+========================= */
+
+.hero {
+    padding: 2rem 0 3rem;
+}
+
+.hero h2 {
+    margin-bottom: 0.75rem;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #25292c;
+}
+
+.hero p {
+    color: #687078;
+}
+
+/* =========================
+   Generic Card
+========================= */
+
+.card,
+.test-card {
+    background: #ffffff;
+    border: 1px solid #e0e3e6;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card h2,
+.test-card h2 {
+    margin-bottom: 1rem;
+    color: #25292c;
+}
+
+.test-card-header {
+    padding: 1.25rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    border-bottom: 1px solid #e5e7e9;
+}
+
+.test-card-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.test-card-header p {
+    margin-top: 0.15rem;
+    font-size: 0.85rem;
+    color: #858b90;
+}
+
+/* =========================
+   Status Dashboard
+========================= */
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.status-item {
+    padding: 1rem;
+    background: #fafbfc;
+    border: 1px solid #e0e3e6;
+    border-radius: 10px;
+}
+
+.status-item {
+    font-size: 0.85rem;
+    color: #737a80;
+}
+
+.status-value {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #25292c;
+}
+
+.green {
+    color: #16a34a;
+}
+
+.red {
+    color: #dc2626;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+button {
+    background: #303438;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+button:hover {
+    background: #25292c;
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* =========================
+   Inputs
+========================= */
+
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+    width: 100%;
+    padding: 0.9rem;
+    border: 1px solid #d8dde2;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+input:focus {
+    outline: none;
+    border-color: #62686d;
+}
+
+/* =========================
+   Event History
+========================= */
+
+#eventHistory {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.event-entry {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eceff1;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 0.85rem;
+}
+
+.timestamp {
+    color: #858b90;
+    margin-right: 0.5rem;
+}
+
+/* =========================
+   Survey Embed Page
+========================= */
+
+.survey-area {
+    min-height: 350px;
+    padding: 2rem;
+}
+
+.empty-state {
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    border: 1px dashed #d6dade;
+    border-radius: 8px;
+
+    background: #fafbfc;
+}
+
+.empty-state h4 {
+    margin-bottom: 0.4rem;
+    font-size: 1rem;
+    color: #555c61;
+}
+
+.empty-state p {
+    max-width: 420px;
+    color: #858b90;
+    font-size: 0.9rem;
+}
+
+.survey-area iframe {
+    display: block;
+    width: 100%;
+    border: none;
+}
+
+/* =========================
+   Info Cards
+========================= */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.info-card {
+    background: #ffffff;
+    border: 1px solid #e0e3e6;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.info-card h3 {
+    margin-bottom: 0.5rem;
+    color: #303438;
+}
+
+.info-card p {
+    color: #737a80;
+    font-size: 0.9rem;
+}
+
+/* =========================
+   Pill Status
+========================= */
+
+.status {
+    padding: 0.3rem 0.65rem;
+    border: 1px solid #dfe3e6;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    color: #687078;
+    background: #f7f8f9;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    padding: 1.5rem 2rem;
+
+    text-align: center;
+
+    border-top: 1px solid #e2e5e8;
+    background: #ffffff;
+
+    color: #858b90;
+    font-size: 0.8rem;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+    .header-content {
+        padding: 1rem 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .container,
+    main {
+        padding: 1.25rem;
+    }
+
+    .hero {
+        padding: 1.5rem 0 2rem;
+    }
+
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+
+    .status-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .survey-area {
+        padding: 1rem;
+    }
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.auth-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#userDisplay {
+    color: #777;
+    font-size: 14px;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#loginButton {
+    min-width: 100px;
+}

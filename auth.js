@@ -36,7 +36,14 @@
   }
   function fail(error) {
     console.error("Auth0 authentication error:", error);
+    render(null);
     if (status) status.textContent = "Authentication unavailable";
+    const state = $("homeAuthState");
+    if (state) state.textContent = "Connection error";
+    const name = $("homeUserName");
+    if (name) name.textContent = "Unable to load account";
+    const email = $("homeUserEmail");
+    if (email) email.textContent = error?.message || "Try refreshing or signing in again";
   }
   async function start() {
     if (!window.auth0?.createAuth0Client) throw new Error("Auth0 SDK did not load");
@@ -61,5 +68,6 @@
   logout?.addEventListener("click", () => client?.logout({
     logoutParams: { returnTo: window.location.origin }
   }));
-  start().catch(fail);
+  const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("Auth0 session check timed out")), 12000));
+  Promise.race([start(), timeout]).catch(fail);
 })();

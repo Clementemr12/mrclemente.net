@@ -1315,6 +1315,21 @@ body.sidebar-collapsed .page.account-home {
   .page.account-home { padding-left: 20px; padding-right: 20px; }
   .account-home > .account-intro { margin-bottom: 22px; }
 }
+
+/* Center the dashboard on the browser viewport, not the sidebar-adjusted page. */
+@media (min-width: 1101px) {
+  .page.account-home > .account-intro,
+  .page.account-home > .account-overview {
+    position: relative;
+    left: -121px; /* half of the expanded 242px sidebar offset */
+    max-width: min(980px, calc(100vw - 290px));
+  }
+  body.sidebar-collapsed .page.account-home > .account-intro,
+  body.sidebar-collapsed .page.account-home > .account-overview {
+    left: -43px; /* half of the collapsed 86px sidebar offset */
+    max-width: min(980px, calc(100vw - 134px));
+  }
+}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

@@ -1077,6 +1077,13 @@ html[data-theme="dark"] body {
 .home-survey-card {width:min(100%,800px)!important}
 .home-survey-embed iframe {border-radius:0!important}
 @media(max-width:700px){.page{padding-top:12px!important}.home-hero{padding-top:8px!important}.home-survey-section{padding-top:42px!important}}
+
+/* Match SDK Testing heading's desktop and responsive vertical position */
+.page {padding-top:112px!important}
+.home-hero {padding-top:0!important}
+@media(max-width:900px){.page{padding-top:90px!important}}
+@media(max-width:700px){.page{padding-top:85px!important}.home-hero{padding-top:0!important}}
+@media(max-width:480px){.page{padding-top:22px!important}}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

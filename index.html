@@ -1159,6 +1159,9 @@ html[data-theme="dark"] body {
 #featuredSurvey :is(.sg-question-title,.sg-question-title label,.sg-question-options,.sg-question-options label,.sg-question-options span,.sg-question) {
   color: var(--ink) !important;
 }
+
+/* Homepage heading matches the SDK Testing page, not the sidebar brand. */
+.home-hero h1 {font-size:clamp(1.8rem,3.5vw,2.35rem)!important;line-height:1.1!important;letter-spacing:-.04em!important;}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

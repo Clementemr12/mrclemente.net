@@ -78,7 +78,6 @@
     const feedback = document.getElementById("embedFeedback");
     const loaded = document.getElementById("surveyLoaded");
     const nameField = document.getElementById("surveyName");
-    let currentUrl = frame.src;
 
     function surveyURL(value) {
       try {
@@ -116,7 +115,6 @@
       setFeedback("Iframe load event received. Survey rendering cannot be verified across domains.", false);
     }
     function loadSurvey(url) {
-      currentUrl = url;
       loaded.textContent = "Loading…";
       nameField.textContent = surveyName(url);
       setFeedback("Loading survey…", false);
@@ -155,14 +153,12 @@
     });
     document.getElementById("clearButton").addEventListener("click", () => {
       embedCode.value = "";
-      currentUrl = null;
       loaded.textContent = "No survey";
       nameField.textContent = "—";
-      frame.removeAttribute("src");
-      frame.replaceWith(document.createElement("div"));
-      const placeholder = shell.firstElementChild;
+      const placeholder = document.createElement("div");
       placeholder.className = "embed-empty";
       placeholder.textContent = "Paste embed code above to display a survey.";
+      shell.replaceChildren(placeholder);
       frame = null;
       setFeedback("Embed code and preview cleared.", false);
     });

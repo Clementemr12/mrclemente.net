@@ -1,0 +1,162 @@
+/* Home-only styles: the Auth0 account dashboard.
+   Navigation, theme, typography and tile colors live in shared stylesheets. */
+
+.page.account-home {
+  max-width: none;
+  margin-right: 0;
+}
+.page.account-home > .account-intro,
+.page.account-home > .account-overview {
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.account-overview {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  margin-bottom: 36px;
+}
+.account-overview-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: .76rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+.account-service-dot {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e88a42;
+}
+.account-overview-head:has(#homeAuthState[data-authenticated="true"]) .account-service-dot {
+  background: #20b47a;
+  box-shadow: 0 0 0 4px rgba(32,180,122,.13);
+}
+.account-live {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.auth0-current-user { padding: 26px 25px; }
+.auth0-user-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.auth0-user-heading > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+.auth0-user-heading strong {
+  font-size: clamp(1.25rem,2.2vw,1.65rem);
+  overflow-wrap: anywhere;
+}
+.account-caption {
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 650;
+  letter-spacing: .025em;
+}
+.account-secondary {
+  color: var(--muted);
+  font-size: .93rem;
+  overflow-wrap: anywhere;
+}
+.auth0-user-pill {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  color: var(--muted);
+  font-size: .76rem;
+  white-space: nowrap;
+}
+.auth0-profile-facts {
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+  gap: 21px;
+  margin-top: 23px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.auth0-profile-facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.auth0-profile-facts span { color: var(--muted); font-size: .76rem; }
+.auth0-profile-facts strong { font-size: .87rem; overflow-wrap: anywhere; }
+.auth0-user-id { font-size: .75rem !important; word-break: break-all; }
+.auth0-org-header {
+  padding: 19px 25px 0;
+  border-top: 1px solid var(--line);
+}
+.auth0-org-header h2,
+.auth0-org-providers h2 { margin: 0; font-size: .95rem; }
+.auth0-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}
+.auth0-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: 22px 25px;
+  border-right: 1px solid var(--line);
+}
+.auth0-summary-item:last-child { border-right: 0; }
+.auth0-summary-item > span { color: var(--muted); font-size: .8rem; }
+.auth0-summary-item strong {
+  font-size: clamp(1.3rem,2vw,1.8rem);
+  letter-spacing: -.03em;
+}
+.auth0-org-providers {
+  padding: 20px 25px;
+  border-top: 1px solid var(--line);
+}
+.auth0-provider-list {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 0 24px;
+  margin-top: 12px;
+}
+.auth0-data-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: 11px 0;
+  border-top: 1px solid var(--line);
+  font-size: .84rem;
+}
+.auth0-data-row:first-child { border-top: 0; }
+.auth0-data-row strong { font-size: .84rem; }
+.auth0-muted { color: var(--muted); font-size: .8rem; }
+
+@media (max-width: 760px) {
+  .auth0-profile-facts { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 500px) {
+  .auth0-user-heading { flex-direction: column; }
+  .auth0-current-user,
+  .auth0-org-providers { padding: 20px; }
+  .auth0-org-header { padding: 18px 20px 0; }
+  .auth0-summary-item { padding: 18px; }
+  .auth0-provider-list { grid-template-columns: 1fr; }
+}

@@ -1289,72 +1289,22 @@ html[data-theme="dark"] body {
 @media(max-width:760px){.auth0-current-user .auth0-profile-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:500px){.auth0-user-heading{flex-direction:column}.auth0-current-user,.auth0-org-providers{padding:20px}.auth0-org-header{padding:18px 20px 0}.auth0-two-metrics .auth0-summary-item{padding:18px}.auth0-org-providers .auth0-provider-list{grid-template-columns:1fr}}
 
-/* Center the Auth0 dashboard within the available content area at every sidebar width. */
-.page.account-home,
-body.sidebar-collapsed .page.account-home {
+/* Home follows the sidebar like the SDK and Survey pages, filling available width. */
+.page.account-home {
   max-width: none;
   margin-right: 0;
-  box-sizing: border-box;
 }
-.account-home > .account-intro,
-.account-home > .account-overview {
+.page.account-home > .account-intro,
+.page.account-home > .account-overview {
   width: 100%;
-  max-width: 980px;
+  max-width: 1320px;
   margin-left: auto;
   margin-right: auto;
 }
-.account-home > .account-intro { margin-bottom: 26px; }
-.account-home > .account-overview { max-width: 980px; margin-bottom: 36px; }
-@media (min-width: 1101px) {
-  .page.account-home { padding-left: 72px; padding-right: 72px; }
-}
-@media (min-width: 701px) and (max-width: 1100px) {
-  .page.account-home { padding-left: 42px; padding-right: 42px; }
-}
-@media (max-width: 700px) {
-  .page.account-home { padding-left: 20px; padding-right: 20px; }
-  .account-home > .account-intro { margin-bottom: 22px; }
-}
-
-/* Center the dashboard on the browser viewport, not the sidebar-adjusted page. */
-@media (min-width: 1101px) {
-  .page.account-home > .account-intro,
-  .page.account-home > .account-overview {
-    position: relative;
-    left: -121px; /* half of the expanded 242px sidebar offset */
-    max-width: min(980px, calc(100vw - 290px));
-  }
-  body.sidebar-collapsed .page.account-home > .account-intro,
-  body.sidebar-collapsed .page.account-home > .account-overview {
-    left: -43px; /* half of the collapsed 86px sidebar offset */
-    max-width: min(980px, calc(100vw - 134px));
-  }
-}
-
-/* Keep Home anchored to the viewport when the sidebar toggles.
-   The sidebar overlays the page rather than resizing/recentering it. */
-@media (min-width: 1101px) {
-  .page.account-home,
-  body.sidebar-collapsed .page.account-home {
-    margin-left: 0 !important;
-    width: 100%;
-    padding-left: 72px;
-    padding-right: 72px;
-    transition: none !important;
-    transform: none !important;
-  }
-  .page.account-home > .account-intro,
-  .page.account-home > .account-overview,
-  body.sidebar-collapsed .page.account-home > .account-intro,
-  body.sidebar-collapsed .page.account-home > .account-overview {
-    left: auto !important;
-    right: auto !important;
-    max-width: min(980px, calc(100vw - 144px));
-    margin-left: auto;
-    margin-right: auto;
-    transform: none !important;
-    transition: none !important;
-  }
+.page.account-home > .account-intro { margin-bottom: 26px; }
+.page.account-home > .account-overview { margin-bottom: 36px; }
+@media (max-width: 620px) {
+  .page.account-home > .account-intro { margin-bottom: 22px; }
 }
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>

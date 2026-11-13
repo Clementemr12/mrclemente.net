@@ -59,6 +59,18 @@
       metric("homeNewWeek", data.new_7d);
       metric("homeNewMonth", data.new_30d);
       metric("homeVerifiedCount", data.verified_users);
+      metric("homeActiveMonth", data.active_30d);
+      metric("homeTotalLogins", data.total_logins);
+      const formatDate = value => {
+        if (!value) return "—";
+        const date = new Date(value);
+        return Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+      };
+      const details = data.current_user || {};
+      const member = $("homeMemberSince"), last = $("homeLastLogin"), logins = $("homeAccountLogins");
+      if (member) member.textContent = formatDate(details.created_at);
+      if (last) last.textContent = formatDate(details.last_login);
+      if (logins) logins.textContent = Number.isInteger(details.logins_count) ? details.logins_count.toLocaleString() : "—";
       const verification = $("homeVerified");
       if (verification) verification.textContent = user.email_verified === true ? "Email verified" : user.email_verified === false ? "Email not verified" : "Verification unknown";
       const providerNames = { auth0: "Auth0 database", google: "Google", github: "GitHub", windowslive: "Microsoft", apple: "Apple" };

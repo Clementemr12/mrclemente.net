@@ -1180,6 +1180,28 @@ html[data-theme="dark"] body {
 .landing-orbit-two{width:700px;height:700px;right:-370px;top:-315px}
 @media(max-width:900px){.landing-page{min-height:calc(100vh - 75px);padding:45px 22px}.landing-hero{min-height:460px;padding:42px 30px;border-radius:24px}}
 @media(max-width:600px){.landing-page{padding:28px 16px 70px}.landing-hero{min-height:440px;padding:36px 25px}.landing-hero h1{font-size:clamp(2.7rem,11vw,4rem)!important}.landing-kicker{font-size:.65rem}.landing-note{font-size:.9rem}}
+
+/* Compact Auth0 account overview. No survey, navigation cards or decorative hero. */
+.account-home{padding-top:120px;max-width:1180px;margin-right:auto}
+.account-intro{margin-bottom:34px}
+.account-intro h1{font-size:clamp(1.8rem,3.5vw,2.35rem)!important;line-height:1.1!important;letter-spacing:-.04em!important;margin:0 0 10px}
+.account-intro p{color:var(--muted);margin:0;font-size:1rem}
+.account-overview{max-width:920px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 86%,transparent);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.account-overview-head{display:flex;align-items:center;gap:10px;padding:19px 25px;border-bottom:1px solid var(--line);font-size:.76rem;letter-spacing:.12em;font-weight:800;color:var(--muted)}
+.account-service-dot{width:9px;height:9px;background:var(--accent);border-radius:50%}
+.account-live{margin-left:auto;font-size:.78rem;letter-spacing:0;font-weight:600;color:var(--muted)}
+.account-primary{padding:30px 25px;display:flex;flex-direction:column;gap:8px}
+.account-caption{color:var(--muted);font-size:.78rem;font-weight:650;letter-spacing:.025em}
+.account-primary strong{font-size:clamp(1.35rem,2.5vw,1.85rem);letter-spacing:-.03em;overflow-wrap:anywhere}
+.account-secondary{font-size:.93rem;color:var(--muted);overflow-wrap:anywhere}
+.account-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
+.account-stat{display:flex;flex-direction:column;gap:10px;padding:25px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.account-stat:nth-child(2n){border-right:0}
+.account-stat:nth-last-child(-n+2){border-bottom:0}
+.account-stat strong{font-size:1.05rem;font-weight:700;overflow-wrap:anywhere}
+.account-stat small{font-size:.75rem;color:var(--muted);line-height:1.5}
+.account-footnote{font-size:.83rem;line-height:1.6;color:var(--muted);max-width:880px;margin-top:22px}
+@media(max-width:600px){.account-home{padding-top:40px}.account-stats{grid-template-columns:1fr}.account-stat{border-right:0!important;border-bottom:1px solid var(--line)!important}.account-stat:last-child{border-bottom:0!important}.account-overview-head,.account-primary,.account-stat{padding-left:19px;padding-right:19px}}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1203,19 +1225,22 @@ html[data-theme="dark"] body {
  <button class="button button-secondary button-small" id="signupButton" type="button">Sign Up</button>
  <button class="button button-secondary button-small" id="logoutButton" type="button" hidden>Log Out</button>
 </div>
-<main class="page landing-page">
-  <section class="landing-hero" aria-labelledby="landing-title">
-    <div class="landing-glow" aria-hidden="true"></div>
-    <div class="landing-content">
-      <div class="landing-kicker"><span class="landing-kicker-dot"></span> MY DEVELOPMENT SPACE</div>
-      <h1 id="landing-title">Matt's <span>Web App.</span></h1>
-      <p class="landing-lead">A space to build, experiment, and explore what's possible on the web.</p>
-      <div class="landing-rule" aria-hidden="true"></div>
-      <p class="landing-note">Web integrations, surveys, and experiments — all in one place. Use the sidebar to explore.</p>
-    </div>
-    <div class="landing-orbit landing-orbit-one" aria-hidden="true"></div>
-    <div class="landing-orbit landing-orbit-two" aria-hidden="true"></div>
+<main class="page account-home">
+  <section class="account-intro">
+    <h1>Matt's Web App</h1>
+    <p>Account overview</p>
   </section>
+  <section class="account-overview" aria-label="Auth0 account overview">
+    <div class="account-overview-head"><span class="account-service-dot"></span><span>AUTH0</span><span class="account-live" id="homeAuthState">Checking session…</span></div>
+    <div class="account-primary"><span class="account-caption">Signed-in user</span><strong id="homeUserName">Checking session…</strong><span id="homeUserEmail" class="account-secondary">—</span></div>
+    <div class="account-stats">
+      <div class="account-stat"><span class="account-caption">Session</span><strong id="homeSession">Checking…</strong></div>
+      <div class="account-stat"><span class="account-caption">Identity provider</span><strong id="homeProvider">—</strong></div>
+      <div class="account-stat"><span class="account-caption">Email verified</span><strong id="homeVerified">—</strong></div>
+      <div class="account-stat"><span class="account-caption">Total users</span><strong id="homeTotalUsers">Not connected</strong><small>Requires secure Auth0 Management API access</small></div>
+    </div>
+  </section>
+  <p class="account-footnote">Sign in to view your account details. Organization-wide statistics require a secure server connection.</p>
 </main>
 <script>
 (function(){const button=document.getElementById("sidebarToggle");button?.addEventListener("click",()=>{const collapsed=document.body.classList.toggle("sidebar-collapsed");button.setAttribute("aria-expanded",String(!collapsed));});})();

@@ -1288,6 +1288,33 @@ html[data-theme="dark"] body {
 .auth0-org-providers .auth0-provider-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin-top:12px}
 @media(max-width:760px){.auth0-current-user .auth0-profile-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:500px){.auth0-user-heading{flex-direction:column}.auth0-current-user,.auth0-org-providers{padding:20px}.auth0-org-header{padding:18px 20px 0}.auth0-two-metrics .auth0-summary-item{padding:18px}.auth0-org-providers .auth0-provider-list{grid-template-columns:1fr}}
+
+/* Center the Auth0 dashboard within the available content area at every sidebar width. */
+.page.account-home,
+body.sidebar-collapsed .page.account-home {
+  max-width: none;
+  margin-right: 0;
+  box-sizing: border-box;
+}
+.account-home > .account-intro,
+.account-home > .account-overview {
+  width: 100%;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.account-home > .account-intro { margin-bottom: 26px; }
+.account-home > .account-overview { max-width: 980px; margin-bottom: 36px; }
+@media (min-width: 1101px) {
+  .page.account-home { padding-left: 72px; padding-right: 72px; }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .page.account-home { padding-left: 42px; padding-right: 42px; }
+}
+@media (max-width: 700px) {
+  .page.account-home { padding-left: 20px; padding-right: 20px; }
+  .account-home > .account-intro { margin-bottom: 22px; }
+}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

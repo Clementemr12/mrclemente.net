@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#20242d">
 <title>Home — Matt's Web App</title>
 <link rel="icon" href="./logo.ico" sizes="any">
-<link rel="stylesheet" href="./site-base.css?v=20261113-2">
-<link rel="stylesheet" href="./home-dashboard.css?v=20261113-2">
-<link rel="stylesheet" href="./shared-theme.css?v=20261113-2">
+<link rel="stylesheet" href="./site-base.css?v=20261113-dark">
+<link rel="stylesheet" href="./home-dashboard.css?v=20261113-dark">
+<link rel="stylesheet" href="./shared-theme.css?v=20261113-dark">
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
-<script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
 </head>
 <body>
 <header class="site-header">
@@ -22,7 +21,6 @@
    <a class="top-link" href="./survey-embed.html">▤ &nbsp; Survey Embed</a>
   </nav>
   <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" aria-expanded="true">☰ <span class="sidebar-toggle-text">Collapse sidebar</span></button>
-  <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" aria-pressed="false"><span class="theme-track" aria-hidden="true"><span class="theme-moon">☾</span><span class="theme-sun">☀</span><span class="theme-thumb"></span></span></button>
  </div>
 </header>
 <div class="global-auth" aria-label="Account actions">
@@ -58,33 +56,7 @@
 <script>
 (function(){const button=document.getElementById("sidebarToggle");button?.addEventListener("click",()=>{const collapsed=document.body.classList.toggle("sidebar-collapsed");button.setAttribute("aria-expanded",String(!collapsed));});})();
 </script>
-  <script>
-    (function () {
-      var button = document.getElementById("themeToggle");
-      if (!button) return;
-      var media = window.matchMedia("(prefers-color-scheme: light)");
-      function savedTheme() {
-        try { return localStorage.getItem("matt-web-app-theme"); } catch (_) { return null; }
-      }
-      function apply(theme) {
-        document.documentElement.dataset.theme = theme;
-        button.setAttribute("aria-label", "Switch to " + (theme === "dark" ? "light" : "dark") + " mode");
-        button.title = "Switch to " + (theme === "dark" ? "light" : "dark") + " mode";
-        button.setAttribute("aria-pressed", String(theme === "light"));
-      }
-      apply(document.documentElement.dataset.theme);
-      button.addEventListener("click", function () {
-        var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        try { localStorage.setItem("matt-web-app-theme", next); } catch (_) {}
-        apply(next);
-      });
-      function systemChanged() {
-        if (savedTheme() !== "light" && savedTheme() !== "dark") apply(media.matches ? "light" : "dark");
-      }
-      if (media.addEventListener) media.addEventListener("change", systemChanged);
-      else if (media.addListener) media.addListener(systemChanged);
-    })();
-  </script>
+  
 <script src="./auth.js?v=20261113-1" defer></script>
 </body>
 </html>

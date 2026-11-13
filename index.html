@@ -1231,6 +1231,25 @@ html[data-theme="dark"] body {
 .auth0-data-row small{color:var(--muted);font-size:.73rem}
 .auth0-user-label{min-width:0;display:flex;flex-direction:column;gap:4px;overflow-wrap:anywhere}
 @media(max-width:650px){.auth0-metrics{grid-template-columns:1fr 1fr}.auth0-lower{grid-template-columns:1fr}.auth0-section-title{flex-direction:column}}
+
+/* Condensed overview: user identity already appears in the global header. */
+.account-intro{margin-bottom:20px}
+.account-overview{max-width:920px}
+.account-overview-head{padding:15px 22px}
+.auth0-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.auth0-summary-item{display:flex;flex-direction:column;gap:10px;padding:23px 20px;border-right:1px solid var(--line)}
+.auth0-summary-item:last-child{border-right:0}
+.auth0-summary-item>span{font-size:.8rem;color:var(--muted)}
+.auth0-summary-item strong{font-size:clamp(1.3rem,2vw,1.8rem);letter-spacing:-.03em}
+.auth0-compact-bottom{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.auth0-compact-bottom>div{padding:20px 22px;min-width:0}
+.auth0-compact-bottom>div:first-child{border-right:1px solid var(--line)}
+.auth0-compact-bottom h2{font-size:.88rem;margin:0 0 10px}
+.auth0-compact-bottom .auth0-data-row{padding:7px 0}
+.auth0-session-info{display:flex;flex-direction:column;gap:9px}
+.auth0-session-info strong{font-size:1rem}
+.auth0-session-info small{font-size:.78rem;color:var(--muted)}
+@media(max-width:650px){.auth0-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.auth0-summary-item:nth-child(2){border-right:0}.auth0-summary-item:nth-child(-n+2){border-bottom:1px solid var(--line)}.auth0-compact-bottom{grid-template-columns:1fr}.auth0-compact-bottom>div:first-child{border-right:0;border-bottom:1px solid var(--line)}}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1255,33 +1274,20 @@ html[data-theme="dark"] body {
  <button class="button button-secondary button-small" id="logoutButton" type="button" hidden>Log Out</button>
 </div>
 <main class="page account-home">
-  <section class="account-intro">
-    <h1>Matt's Web App</h1>
-    <p>Account overview</p>
-  </section>
-  <section class="account-overview" aria-label="Auth0 account overview">
-    <div class="account-overview-head"><span class="account-service-dot"></span><span>AUTH0</span><span class="account-live" id="homeAuthState">Checking session…</span></div>
-    <div class="account-primary"><span class="account-caption">Signed-in user</span><strong id="homeUserName">Checking session…</strong><span id="homeUserEmail" class="account-secondary">—</span></div>
-    <div class="account-stats">
-      <div class="account-stat"><span class="account-caption">Session</span><strong id="homeSession">Checking…</strong></div>
-      <div class="account-stat"><span class="account-caption">Identity provider</span><strong id="homeProvider">—</strong></div>
-      <div class="account-stat"><span class="account-caption">Email verified</span><strong id="homeVerified">—</strong></div>
-      <div class="account-stat"><span class="account-caption">Total users</span><strong id="homeTotalUsers">Sign in required</strong><small>Registered Auth0 users</small></div>
+  <section class="account-intro"><h1>Matt's Web App</h1></section>
+  <section class="account-overview" aria-label="Auth0 dashboard">
+    <div class="account-overview-head"><span class="account-service-dot"></span><span>AUTH0 OVERVIEW</span><span class="account-live" id="homeAuthState">Checking session…</span></div>
+    <div class="auth0-summary-grid">
+      <div class="auth0-summary-item"><span>Total users</span><strong id="homeTotalUsers">—</strong></div>
+      <div class="auth0-summary-item"><span>New in 7 days</span><strong id="homeNewWeek">—</strong></div>
+      <div class="auth0-summary-item"><span>New in 30 days</span><strong id="homeNewMonth">—</strong></div>
+      <div class="auth0-summary-item"><span>Verified users</span><strong id="homeVerifiedCount">—</strong></div>
+    </div>
+    <div class="auth0-compact-bottom">
+      <div><h2>Identity providers</h2><div id="homeProviders" class="auth0-provider-list"><span class="auth0-muted">Sign in to view</span></div></div>
+      <div class="auth0-session-info"><span class="account-caption">Your connection</span><strong id="homeProvider">—</strong><small id="homeVerified">—</small></div>
     </div>
   </section>
-  <section class="auth0-insights" aria-label="Auth0 organization statistics">
-    <div class="auth0-section-title"><h2>Organization insights</h2><span>Last 30 days and recent accounts</span></div>
-    <div class="auth0-metrics">
-      <div class="auth0-metric"><span>New this week</span><strong id="homeNewWeek">—</strong></div>
-      <div class="auth0-metric"><span>New this month</span><strong id="homeNewMonth">—</strong></div>
-      <div class="auth0-metric"><span>Verified accounts</span><strong id="homeVerifiedCount">—</strong></div>
-    </div>
-    <div class="auth0-lower">
-      <section class="auth0-detail"><h3>Identity providers</h3><div id="homeProviders" class="auth0-provider-list"><span class="auth0-muted">Sign in to view</span></div></section>
-      <section class="auth0-detail"><h3>Recently registered</h3><div id="homeRecentUsers" class="auth0-recent-list"><span class="auth0-muted">Sign in to view</span></div></section>
-    </div>
-  </section>
-  <p class="account-footnote">Sign in to view your account details. Organization-wide statistics require a secure server connection.</p>
 </main>
 <script>
 (function(){const button=document.getElementById("sidebarToggle");button?.addEventListener("click",()=>{const collapsed=document.body.classList.toggle("sidebar-collapsed");button.setAttribute("aria-expanded",String(!collapsed));});})();
@@ -1313,6 +1319,6 @@ html[data-theme="dark"] body {
       else if (media.addListener) media.addListener(systemChanged);
     })();
   </script>
-<script src="./auth.js?v=20261112-7" defer></script>
+<script src="./auth.js?v=20261112-8" defer></script>
 </body>
 </html>

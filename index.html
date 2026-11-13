@@ -1017,6 +1017,11 @@ html[data-theme="dark"] body {
 .home-card {background: color-mix(in srgb, var(--surface) 89%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);}
 @media(max-width:700px){.home-hero{padding:48px 0 35px}.home-cards{margin-bottom:70px}}
 
+
+/* Homepage layout refinements */
+.home-hero h1 { font-size: clamp(1.55rem, 2.4vw, 2rem); }
+.home-cards { width: min(100%, 840px); margin: 76px auto 110px; }
+@media (max-width: 700px) { .home-cards { margin-top: 52px; margin-bottom: 70px; } }
 </style>
   <link rel="stylesheet" href="./shared-theme.css">
 <style>

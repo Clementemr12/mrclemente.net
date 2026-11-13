@@ -1101,6 +1101,21 @@ html[data-theme="dark"] body {
 .home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type=submit]) {background:#e88945!important;color:#172033!important;border:0!important;border-radius:10px!important;max-width:100%!important}
 .home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type=submit]):hover {background:#cf7130!important}
 .home-survey-embed img,.home-survey-embed iframe,.home-survey-embed table {max-width:100%!important}
+
+/* Match the SDK Testing sidebar exactly */
+@media(min-width:901px) {
+ .site-header {width:242px!important;box-sizing:border-box}
+ .header-inner {width:100%!important;padding:24px 14px!important;gap:30px!important;box-sizing:border-box}
+ .brand {width:100%!important}
+ .page {margin-left:242px!important;box-sizing:border-box}
+ body.sidebar-collapsed .site-header {width:86px!important}
+ body.sidebar-collapsed .page {margin-left:86px!important}
+}
+.home-survey-embed, .home-survey-embed :is(.sg-question,.sg-question-title,.sg-question-options,.sg-question-options label,.sg-footer,.sg-submit-button) {
+ font-family:inherit!important;
+}
+.home-survey-embed :is(.sg-progress-bar,.sg-progress,.sg-footer .sg-progress-bar) {display:none!important}
+.home-survey-embed :is(.sg-footer,.sg-question) {border:0!important;box-shadow:none!important}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1110,7 +1125,7 @@ html[data-theme="dark"] body {
  <div class="header-inner">
   <a class="sidebar-brand" href="./index.html"><img src="./Lucario-Icon.png" alt="" width="48" height="48"><span><strong>Matt's Web App</strong><small>Web - Matt's Test Org</small></span></a>
   <nav class="brand" aria-label="Main navigation">
-   <a class="top-link active-link" href="./index.html" aria-current="page">⌂ &nbsp; Home</a>
+   <a class="brand-name top-link active-link" href="./index.html" aria-current="page">⌂ &nbsp; Home</a>
    <a class="top-link" href="./sdk-testing.html">◫ &nbsp; Web SDK</a>
    <a class="top-link" href="./survey-embed.html">▤ &nbsp; Survey Embed</a>
   </nav>

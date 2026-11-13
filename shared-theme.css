@@ -92,3 +92,9 @@ html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat,.home-ca
     transform: none !important;
   }
 }
+
+/* One consistent page-title size across all three pages. */
+.page :is(.account-intro h1, .dashboard-heading h1, .heading h1) {
+  font-size: 1.75rem !important;
+  line-height: 1.2 !important;
+}

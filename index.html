@@ -1023,16 +1023,11 @@ html[data-theme="dark"] body {
 .home-cards { width: min(100%, 840px); margin: 76px auto 110px; }
 @media (max-width: 700px) { .home-cards { margin-top: 52px; margin-bottom: 70px; } }
 
-/* Homepage survey: allow room for the comment question, suppress navigation chrome. */
-.home-survey-embed {min-height:680px!important;overflow:visible!important;}
-.home-survey-embed iframe {height:680px!important;min-height:680px!important;}
-.home-survey-embed :is(.sg-footer,.sg-button-bar,.sg-next-button,.sg-back-button,.sg-submit-button,.sg-progress-bar) {display:none!important;}
-.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-question-set) {min-height:600px;max-height:none!important;overflow:visible!important;}
-.home-survey-embed textarea.sg-input-essay {min-height:150px;max-width:100%;box-sizing:border-box;}
-@media(max-width:700px) {
- .home-survey-embed {min-height:760px!important;}
- .home-survey-embed iframe {height:760px!important;min-height:760px!important;}
-}
+
+/* Keep survey submit control visible, with the same transparent finish. */
+#featuredSurvey :is(.sg-footer,.sg-button-bar,.sg-submit-button) {display:revert!important;}
+#featuredSurvey :is(.sg-submit-button,input[type="submit"]) {background:transparent!important;background-color:transparent!important;color:var(--ink)!important;border:1px solid var(--line)!important;box-shadow:none!important;cursor:pointer;}
+#featuredSurvey :is(.sg-submit-button,input[type="submit"]):hover {background:color-mix(in srgb,var(--ink) 6%,transparent)!important;}
 </style>
   <link rel="stylesheet" href="./shared-theme.css">
 <style>
@@ -1125,9 +1120,9 @@ html[data-theme="dark"] body {
 }
 .home-survey-embed :is(input[type="radio"],input[type="checkbox"]) { accent-color: #e88945; }
 .home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type="submit"]) {
-  background: #e88945 !important;
-  color: #172033 !important;
-  border: 0 !important;
+  background: transparent !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
   border-radius: 10px !important;
   max-width: 100%;
 }

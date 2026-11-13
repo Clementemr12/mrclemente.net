@@ -1202,6 +1202,11 @@ html[data-theme="dark"] body {
 .account-stat small{font-size:.75rem;color:var(--muted);line-height:1.5}
 .account-footnote{font-size:.83rem;line-height:1.6;color:var(--muted);max-width:880px;margin-top:22px}
 @media(max-width:600px){.account-home{padding-top:40px}.account-stats{grid-template-columns:1fr}.account-stat{border-right:0!important;border-bottom:1px solid var(--line)!important}.account-stat:last-child{border-bottom:0!important}.account-overview-head,.account-primary,.account-stat{padding-left:19px;padding-right:19px}}
+
+/* Auth0 dashboard status reflects the authenticated session. */
+.account-overview-head .account-service-dot{background:#e88a42}
+.account-overview-head:has(#homeAuthState) .account-service-dot{transition:background .2s,box-shadow .2s}
+.account-overview-head:has(#homeAuthState[data-authenticated="true"]) .account-service-dot{background:#20b47a;box-shadow:0 0 0 4px rgba(32,180,122,.13)}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

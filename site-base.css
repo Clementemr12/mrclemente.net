@@ -1,24 +1,5 @@
 /* Shared SDK/Home foundational styles. Extracted from duplicated inline CSS. */
-:root {
-      color-scheme: light;
-      --ink: #172033;
-      --muted: #65718a;
-      --line: #e5eaf2;
-      --surface: #ffffff;
-      --canvas: #f5f7fb;
-      --accent: #e88945;
-      --accent-dark: #cf7130;
-      --sky: #dff3fb;
-      --sky-strong: #b8e5f5;
-      --orange-wash: #fff0e4;
-      --green: #16845b;
-      --green-bg: #e9f8f1;
-      --amber: #946200;
-      --amber-bg: #fff5d9;
-      --red: #b42336;
-      --red-bg: #fff0f1;
-      --shadow: 0 14px 38px rgba(25, 38, 68, 0.06);
-    }
+
 
     * { box-sizing: border-box; }
 

@@ -35,6 +35,8 @@
     set("homeSession", signedIn ? "Active" : "Anonymous");
     set("homeProvider", signedIn ? (providerNames[provider] || provider || "Unknown") : "—");
     set("homeVerified", signedIn ? (user.email_verified === true ? "Yes" : user.email_verified === false ? "No" : "Unknown") : "—");
+    set("homeUserId", signedIn ? (user.sub || "—") : "—");
+    set("homeAccountStatus", signedIn ? "Active session" : "Anonymous");
 
   }
   async function loadTotalUsers(user) {
@@ -56,11 +58,7 @@
         const node = $(id);
         if (node) node.textContent = Number.isInteger(value) ? value.toLocaleString() : "—";
       };
-      metric("homeNewWeek", data.new_7d);
-      metric("homeNewMonth", data.new_30d);
       metric("homeVerifiedCount", data.verified_users);
-      metric("homeActiveMonth", data.active_30d);
-      metric("homeTotalLogins", data.total_logins);
       const formatDate = value => {
         if (!value) return "—";
         const date = new Date(value);
@@ -71,8 +69,12 @@
       if (member) member.textContent = formatDate(details.created_at);
       if (last) last.textContent = formatDate(details.last_login);
       if (logins) logins.textContent = Number.isInteger(details.logins_count) ? details.logins_count.toLocaleString() : "—";
+      const updated = $("homeProfileUpdated"), mfa = $("homeMfa"), account = $("homeAccountStatus");
+      if (updated) updated.textContent = formatDate(details.updated_at || user.updated_at);
+      if (mfa) mfa.textContent = Array.isArray(details.multifactor) && details.multifactor.length ? "Yes" : "No enrolled factors";
+      if (account) account.textContent = details.blocked ? "Blocked account" : "Active session";
       const verification = $("homeVerified");
-      if (verification) verification.textContent = user.email_verified === true ? "Email verified" : user.email_verified === false ? "Email not verified" : "Verification unknown";
+
       const providerNames = { auth0: "Auth0 database", google: "Google", github: "GitHub", windowslive: "Microsoft", apple: "Apple" };
       const providers = $("homeProviders");
       if (providers) {

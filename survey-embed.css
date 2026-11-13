@@ -22,7 +22,7 @@
     .heading { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 36px; }
 
     h1 { font-size: clamp(1.55rem,2.5vw,2rem); letter-spacing: -.035em; margin: 5px 0 4px; }
-    .heading p { color: var(--muted); font-size: .84rem; margin: 0; }
+    
     .environment { border: 1px solid #424d48; background: #292e32; color: #a5c8b1; padding: 8px 12px; border-radius: 8px; white-space: nowrap; font-size: .76rem; }
     .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 9px; margin-bottom: 30px; padding: 0 24px 24px; box-shadow: 0 3px 12px rgba(0,0,0,.1); overflow: hidden; }
     .panel-heading { margin: 0 -24px 24px; padding: 17px 24px; background: #2c3038; border-bottom: 1px solid #3b424b; }
@@ -136,12 +136,12 @@
     html[data-theme="light"] body { background: #f2f4f8; color: #273241; }
     html[data-theme="light"] .site-header { background: transparent; border-color: transparent; }
     html[data-theme="light"] .sidebar-brand, html[data-theme="light"] .sidebar-brand strong { color: #273241; border-color: #dce2e9; }
-    html[data-theme="light"] .sidebar-brand small, html[data-theme="light"] .heading p, html[data-theme="light"] .dashboard-heading p { color: #647186; }
+    html[data-theme="light"] .sidebar-brand small { color: #647186; }
     html[data-theme="light"] .brand .top-link, html[data-theme="light"] .brand-name.top-link { color: #526074; }
     html[data-theme="light"] .brand .active-link { background: #e2e7ef; color: #263242; }
     html[data-theme="light"] .brand .top-link:hover { background: #e6ebf2; color: #263242; }
     html[data-theme="light"] .sidebar-toggle { background: #fff; color: #526074; border-color: #d5dce5; }
-    html[data-theme="light"] .dashboard-heading h1, html[data-theme="light"] .heading h1 { color: #243040; }
+    
     html[data-theme="light"] .dashboard-environment, html[data-theme="light"] .environment { background: #e9f3ee; color: #31744f; border-color: #cadfd0; }
     html[data-theme="light"] .status-card, html[data-theme="light"] .stat, html[data-theme="light"] .panel { background: #fff; border-color: #d7dee8; box-shadow: 0 9px 25px rgba(37,52,73,.1),0 2px 6px rgba(37,52,73,.05); }
     html[data-theme="light"] .panel:hover, html[data-theme="light"] .status-card:hover { border-color: #bdc9d8; box-shadow: 0 12px 27px rgba(37,52,73,.12); }

@@ -55,10 +55,10 @@ html[data-theme="light"] .panel-heading {border-bottom-color:rgba(232,137,69,.16
 /* Unified tile surfaces across Home, SDK Testing and Survey Embed.
    Keep status indicators and console surfaces independent. */
 :root {
-  --shared-tile-light: rgba(255,255,255,.92);
-  --shared-tile-light-border: rgba(208,216,228,.8);
-  --shared-tile-dark: #30353f;
-  --shared-tile-dark-border: #414753;
+  --shared-tile-light: #edf0f5;
+  --shared-tile-light-border: #cbd3df;
+  --shared-tile-dark: #292e37;
+  --shared-tile-dark-border: #3c4350;
 }
 html[data-theme="light"] :is(.account-overview,.panel,.status-card,.stat,.home-card,.event-panel,.tool-panel) {
   background-color: var(--shared-tile-light) !important;
@@ -69,27 +69,26 @@ html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat,.home-ca
   border-color: var(--shared-tile-dark-border) !important;
 }
 
-/* Testing pages share Home's 980px viewport-centered content width.
-   The sidebar changes independently and never shifts the page. */
+/* SDK and Survey use the same sidebar-relative, full-width layout as Home. */
 @media (min-width: 901px) {
-  body .page.testing-page,
-  body.sidebar-collapsed .page.testing-page {
-    margin-left: 0 !important;
-    width: 100% !important;
+  body .page.testing-page {
+    width: auto !important;
     max-width: none !important;
-    padding-left: 72px !important;
-    padding-right: 72px !important;
+    margin-left: 242px !important;
+    padding-left: 52px !important;
+    padding-right: 52px !important;
     box-sizing: border-box;
     transform: none !important;
-    transition: none !important;
+  }
+  body.sidebar-collapsed .page.testing-page {
+    margin-left: 86px !important;
   }
   .page.testing-page > :is(.dashboard-heading,.heading,.status-grid,.stats,.main-grid,.panel,.footer) {
     width: 100%;
-    max-width: min(980px, calc(100vw - 144px));
+    max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
     transform: none !important;
-    transition: none !important;
   }
 }

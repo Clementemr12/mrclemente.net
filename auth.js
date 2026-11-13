@@ -52,6 +52,53 @@
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Unable to retrieve user count");
       el.textContent = Number(data.total_users).toLocaleString();
+      const metric = (id, value) => {
+        const node = $(id);
+        if (node) node.textContent = Number.isInteger(value) ? value.toLocaleString() : "—";
+      };
+      metric("homeNewWeek", data.new_7d);
+      metric("homeNewMonth", data.new_30d);
+      metric("homeVerifiedCount", data.verified_users);
+      const providerNames = { auth0: "Auth0 database", google: "Google", github: "GitHub", windowslive: "Microsoft", apple: "Apple" };
+      const providers = $("homeProviders");
+      if (providers) {
+        providers.replaceChildren();
+        const entries = Array.isArray(data.providers) ? data.providers : [];
+        if (!entries.length) providers.textContent = data.stats_complete ? "No accounts" : "Not available";
+        for (const entry of entries) {
+          const row = document.createElement("div");
+          row.className = "auth0-data-row";
+          const label = document.createElement("span");
+          label.textContent = providerNames[entry.provider] || entry.provider || "Other";
+          const count = document.createElement("strong");
+          count.textContent = String(entry.count);
+          row.append(label, count);
+          providers.append(row);
+        }
+      }
+      const recent = $("homeRecentUsers");
+      if (recent) {
+        recent.replaceChildren();
+        const entries = Array.isArray(data.recent_users) ? data.recent_users : [];
+        if (!entries.length) recent.textContent = "No accounts found";
+        for (const entry of entries) {
+          const row = document.createElement("div");
+          row.className = "auth0-data-row";
+          const info = document.createElement("span");
+          info.className = "auth0-user-label";
+          const label = document.createElement("strong");
+          label.textContent = entry.email || entry.name || "Unnamed account";
+          const date = document.createElement("small");
+          const parsed = entry.created_at ? new Date(entry.created_at) : null;
+          date.textContent = parsed && !Number.isNaN(parsed.getTime()) ? "Joined " + parsed.toLocaleDateString() : "Creation date unavailable";
+          info.append(label, date);
+          const verified = document.createElement("small");
+          verified.textContent = entry.email_verified ? "Verified" : "Unverified";
+          row.append(info, verified);
+          recent.append(row);
+        }
+      }
+
     } catch (error) {
       console.error("Auth0 total users:", error);
       el.textContent = "Unavailable";

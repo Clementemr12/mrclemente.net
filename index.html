@@ -1270,6 +1270,24 @@ html[data-theme="dark"] body {
 .auth0-profile-facts span{font-size:.76rem;color:var(--muted)}
 .auth0-profile-facts strong{font-size:.87rem;overflow-wrap:anywhere}
 @media(max-width:650px){.auth0-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.auth0-summary-item:nth-child(3){border-right:1px solid var(--line)}.auth0-summary-item:nth-child(4){border-right:0}.auth0-summary-item:nth-child(-n+4){border-bottom:1px solid var(--line)}.auth0-dashboard-lower{grid-template-columns:1fr}.auth0-dashboard-lower>section:first-child{border-right:0;border-bottom:1px solid var(--line)}}
+
+/* Current-user-first Auth0 overview. */
+.auth0-current-user{padding:26px 25px}
+.auth0-user-heading{display:flex;justify-content:space-between;gap:16px;align-items:start}
+.auth0-user-heading>div{display:flex;flex-direction:column;gap:7px;min-width:0}
+.auth0-user-heading strong{font-size:clamp(1.25rem,2.2vw,1.65rem);overflow-wrap:anywhere}
+.auth0-user-pill{font-size:.76rem;color:var(--muted);padding:7px 10px;border:1px solid var(--line);border-radius:99px;white-space:nowrap}
+.auth0-current-user .auth0-profile-facts{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:23px;gap:21px}
+.auth0-user-id{font-size:.75rem!important;word-break:break-all}
+.auth0-org-header{border-top:1px solid var(--line);padding:19px 25px 0}
+.auth0-org-header h2,.auth0-org-providers h2{font-size:.95rem;margin:0}
+.auth0-two-metrics{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}
+.auth0-two-metrics .auth0-summary-item{border-bottom:0;border-right:1px solid var(--line);padding:22px 25px}
+.auth0-two-metrics .auth0-summary-item:last-child{border-right:0}
+.auth0-org-providers{border-top:1px solid var(--line);padding:20px 25px}
+.auth0-org-providers .auth0-provider-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;margin-top:12px}
+@media(max-width:760px){.auth0-current-user .auth0-profile-facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:500px){.auth0-user-heading{flex-direction:column}.auth0-current-user,.auth0-org-providers{padding:20px}.auth0-org-header{padding:18px 20px 0}.auth0-two-metrics .auth0-summary-item{padding:18px}.auth0-org-providers .auth0-provider-list{grid-template-columns:1fr}}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1297,32 +1315,25 @@ html[data-theme="dark"] body {
   <section class="account-intro"><h1>Matt's Web App</h1><p>Auth0 dashboard</p></section>
   <section class="account-overview" aria-label="Auth0 dashboard">
     <div class="account-overview-head"><span class="account-service-dot"></span><span>AUTH0 OVERVIEW</span><span class="account-live" id="homeAuthState">Checking session…</span></div>
-    <div class="auth0-summary-grid">
+    <section class="auth0-current-user" aria-label="Current signed-in user">
+      <div class="auth0-user-heading"><div><span class="account-caption">Signed-in user</span><strong id="homeUserName">Checking session…</strong><span id="homeUserEmail" class="account-secondary">—</span></div><span class="auth0-user-pill" id="homeAccountStatus">—</span></div>
+      <div class="auth0-profile-facts">
+        <div><span>Identity provider</span><strong id="homeProvider">—</strong></div>
+        <div><span>Email verified</span><strong id="homeVerified">—</strong></div>
+        <div><span>Member since</span><strong id="homeMemberSince">—</strong></div>
+        <div><span>Last login</span><strong id="homeLastLogin">—</strong></div>
+        <div><span>Account logins</span><strong id="homeAccountLogins">—</strong></div>
+        <div><span>Profile updated</span><strong id="homeProfileUpdated">—</strong></div>
+        <div><span>MFA enrolled</span><strong id="homeMfa">—</strong></div>
+        <div><span>Auth0 user ID</span><strong class="auth0-user-id" id="homeUserId">—</strong></div>
+      </div>
+    </section>
+    <div class="auth0-org-header"><h2>Organization</h2></div>
+    <div class="auth0-summary-grid auth0-two-metrics">
       <div class="auth0-summary-item"><span>Total users</span><strong id="homeTotalUsers">—</strong></div>
-      <div class="auth0-summary-item"><span>New in 7 days</span><strong id="homeNewWeek">—</strong></div>
-      <div class="auth0-summary-item"><span>New in 30 days</span><strong id="homeNewMonth">—</strong></div>
       <div class="auth0-summary-item"><span>Verified users</span><strong id="homeVerifiedCount">—</strong></div>
-      <div class="auth0-summary-item"><span>Logged in (30 days)</span><strong id="homeActiveMonth">—</strong></div>
-      <div class="auth0-summary-item"><span>Lifetime logins</span><strong id="homeTotalLogins">—</strong></div>
     </div>
-    <div class="auth0-dashboard-lower">
-      <section class="auth0-dashboard-profile">
-        <h2>Current user</h2>
-        <strong id="homeUserName">Checking session…</strong>
-        <span id="homeUserEmail" class="account-secondary">—</span>
-        <div class="auth0-profile-facts">
-          <div><span>Provider</span><strong id="homeProvider">—</strong></div>
-          <div><span>Email</span><strong id="homeVerified">—</strong></div>
-          <div><span>Member since</span><strong id="homeMemberSince">—</strong></div>
-          <div><span>Last login</span><strong id="homeLastLogin">—</strong></div>
-          <div><span>Account logins</span><strong id="homeAccountLogins">—</strong></div>
-        </div>
-      </section>
-      <section class="auth0-dashboard-providers">
-        <h2>Identity providers</h2>
-        <div id="homeProviders" class="auth0-provider-list"><span class="auth0-muted">Sign in to view</span></div>
-      </section>
-    </div>
+    <section class="auth0-org-providers"><h2>Identity providers</h2><div id="homeProviders" class="auth0-provider-list"><span class="auth0-muted">Sign in to view</span></div></section>
   </section>
 </main>
 <script>
@@ -1355,6 +1366,6 @@ html[data-theme="dark"] body {
       else if (media.addListener) media.addListener(systemChanged);
     })();
   </script>
-<script src="./auth.js?v=20261112-9" defer></script>
+<script src="./auth.js?v=20261112-10" defer></script>
 </body>
 </html>

@@ -1587,7 +1587,9 @@
         state.auth0Client = await window.auth0.createAuth0Client({
           domain: "dev-q1lngtdo3cgl4m8c.us.auth0.com",
           clientId: "ZtCJT5jQo3Wegk1GJsSnjG6oA4K2kqm1",
-          authorizationParams: { redirect_uri: window.location.origin, audience: "https://alchemer-interaction-api" }
+          authorizationParams: { redirect_uri: window.location.origin, audience: "https://alchemer-interaction-api" },
+          cacheLocation: "localstorage",
+          useRefreshTokens: false
         });
 
         if (window.location.search.includes("error=")) {

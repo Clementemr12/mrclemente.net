@@ -51,3 +51,20 @@ html[data-theme="light"] .panel-heading {border-bottom-color:rgba(232,137,69,.16
 @media (prefers-reduced-motion: reduce) {
   :is(.home-card,.panel,.status-card,.stat) {transition:none}
 }
+
+/* Unified tile surfaces across Home, SDK Testing and Survey Embed.
+   Keep status indicators and console surfaces independent. */
+:root {
+  --shared-tile-light: rgba(255,255,255,.92);
+  --shared-tile-light-border: rgba(208,216,228,.8);
+  --shared-tile-dark: #30353f;
+  --shared-tile-dark-border: #414753;
+}
+html[data-theme="light"] :is(.account-overview,.panel,.status-card,.stat,.home-card,.event-panel,.tool-panel) {
+  background-color: var(--shared-tile-light) !important;
+  border-color: var(--shared-tile-light-border) !important;
+}
+html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat,.home-card,.event-panel,.tool-panel) {
+  background-color: var(--shared-tile-dark) !important;
+  border-color: var(--shared-tile-dark-border) !important;
+}

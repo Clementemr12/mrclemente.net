@@ -1330,6 +1330,32 @@ body.sidebar-collapsed .page.account-home {
     max-width: min(980px, calc(100vw - 134px));
   }
 }
+
+/* Keep Home anchored to the viewport when the sidebar toggles.
+   The sidebar overlays the page rather than resizing/recentering it. */
+@media (min-width: 1101px) {
+  .page.account-home,
+  body.sidebar-collapsed .page.account-home {
+    margin-left: 0 !important;
+    width: 100%;
+    padding-left: 72px;
+    padding-right: 72px;
+    transition: none !important;
+    transform: none !important;
+  }
+  .page.account-home > .account-intro,
+  .page.account-home > .account-overview,
+  body.sidebar-collapsed .page.account-home > .account-intro,
+  body.sidebar-collapsed .page.account-home > .account-overview {
+    left: auto !important;
+    right: auto !important;
+    max-width: min(980px, calc(100vw - 144px));
+    margin-left: auto;
+    margin-right: auto;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

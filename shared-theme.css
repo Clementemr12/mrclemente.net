@@ -1,10 +1,17 @@
-/* Shared visual identity for Home, SDK Testing and Survey Embed */
+/* Shared design system for Home, SDK Testing and Survey Embed.
+   Load this file AFTER each page's own stylesheet. */
+
 :root {
   --shared-orange: #e88945;
-  --shared-orange-strong: #cf7130;
+  --shared-tile-light: #edf0f5;
+  --shared-tile-light-border: #cbd3df;
+  --shared-tile-dark: #292e37;
+  --shared-tile-dark-border: #3c4350;
   --shared-card-radius: 16px;
   --shared-shadow: 0 12px 32px rgba(25,38,68,.08);
 }
+
+/* Global background, consistent in light and dark mode. */
 html[data-theme="light"] body {
   min-height: 100vh;
   background:
@@ -22,106 +29,84 @@ html[data-theme="dark"] body {
     linear-gradient(135deg,#181d28 0%,#202634 55%,#2a2529 100%);
   background-attachment: fixed;
 }
-:is(.home-card,.panel,.status-card,.stat,.event-panel,.tool-panel) {
+
+/* One set of surface colors for the account, SDK and survey tiles. */
+:is(.panel,.status-card,.stat) {
   border-radius: var(--shared-card-radius);
   box-shadow: var(--shared-shadow);
 }
-html[data-theme="light"] :is(.home-card,.panel,.status-card,.stat) {
-  background-color: rgba(255,255,255,.92);
-  border-color: rgba(208,216,228,.8);
-}
-html[data-theme="dark"] :is(.home-card,.panel,.status-card,.stat) {
-  box-shadow: 0 14px 36px rgba(0,0,0,.18);
-}
-:is(.home-card,.panel,.status-card,.stat) {
-  transition: box-shadow .18s ease, transform .18s ease;
-}
-:is(.home-card,.status-card,.stat):hover {
-  box-shadow: 0 18px 40px rgba(25,38,68,.13);
-}
-html[data-theme="light"] :is(.active-link,.top-link.active-link) {
-  border-left-color: var(--shared-orange);
-}
-html[data-theme="dark"] :is(.active-link,.top-link.active-link) {
-  border-left-color: var(--shared-orange);
-}
-:is(.home-eyebrow,.home-open) {color:var(--shared-orange-strong)}
-html[data-theme="light"] .global-auth .button:hover {border-color:var(--shared-orange)}
-html[data-theme="light"] .panel-heading {border-bottom-color:rgba(232,137,69,.16)}
-@media (prefers-reduced-motion: reduce) {
-  :is(.home-card,.panel,.status-card,.stat) {transition:none}
-}
-
-/* Unified tile surfaces across Home, SDK Testing and Survey Embed.
-   Keep status indicators and console surfaces independent. */
-:root {
-  --shared-tile-light: #edf0f5;
-  --shared-tile-light-border: #cbd3df;
-  --shared-tile-dark: #292e37;
-  --shared-tile-dark-border: #3c4350;
-}
-html[data-theme="light"] :is(.account-overview,.panel,.status-card,.stat,.home-card,.event-panel,.tool-panel) {
+html[data-theme="light"] :is(.account-overview,.panel,.status-card,.stat) {
   background-color: var(--shared-tile-light) !important;
   border-color: var(--shared-tile-light-border) !important;
 }
-html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat,.home-card,.event-panel,.tool-panel) {
+html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat) {
   background-color: var(--shared-tile-dark) !important;
   border-color: var(--shared-tile-dark-border) !important;
 }
+html[data-theme="dark"] :is(.panel,.status-card,.stat) {
+  box-shadow: 0 14px 36px rgba(0,0,0,.18);
+}
+:is(.status-card,.stat):hover {
+  box-shadow: 0 18px 40px rgba(25,38,68,.13);
+}
 
-/* SDK and Survey use the same sidebar-relative, full-width layout as Home. */
+/* The sidebar determines the desktop content area on every page. */
 @media (min-width: 901px) {
-  body .page.testing-page {
-    width: auto !important;
-    max-width: none !important;
-    margin-left: 242px !important;
-    padding-left: 52px !important;
-    padding-right: 52px !important;
+  body .page:is(.account-home,.testing-page) {
+    width: auto;
+    max-width: none;
+    margin-left: 242px;
+    padding-left: 52px;
+    padding-right: 52px;
     box-sizing: border-box;
-    transform: none !important;
   }
-  body.sidebar-collapsed .page.testing-page {
-    margin-left: 86px !important;
+  body.sidebar-collapsed .page:is(.account-home,.testing-page) {
+    margin-left: 86px;
   }
-  .page.testing-page > :is(.dashboard-heading,.heading,.status-grid,.stats,.main-grid,.panel,.footer) {
+  .page:is(.account-home,.testing-page) > :is(
+    .page-heading,.account-overview,.status-grid,.stats,.main-grid,.panel,.footer
+  ) {
     width: 100%;
     max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
-    transform: none !important;
   }
 }
 
-/* One consistent page-title size across all three pages. */
-.page :is(.account-intro h1, .dashboard-heading h1, .heading h1) {
-  font-size: 1.75rem !important;
-  line-height: 1.2 !important;
-}
-
-/* Match the actual page heading blocks, not only the title font size. */
-.page > :is(.account-intro,.dashboard-heading,.heading) {
+/* Every page title and subtitle has exactly the same typography and spacing.
+   Older page-specific title declarations are deliberately superseded here. */
+.page > .page-heading {
   margin-top: 0 !important;
   margin-bottom: 36px !important;
 }
-.page > :is(.account-intro,.dashboard-heading,.heading) h1 {
+.page > .page-heading h1 {
+  margin: 0 !important;
+  color: var(--ink);
   font-size: 1.75rem !important;
   font-weight: 700 !important;
   line-height: 1.2 !important;
   letter-spacing: -.035em !important;
-  margin: 0 !important;
 }
-.page > :is(.account-intro,.dashboard-heading,.heading) p {
-  font-size: .88rem !important;
-  line-height: 1.45 !important;
+.page > .page-heading p {
   margin: 8px 0 0 !important;
   color: var(--muted) !important;
+  font-size: .88rem !important;
+  line-height: 1.45 !important;
 }
-.page > :is(.account-intro,.dashboard-heading,.heading) > div {
+.page > .page-heading > div {
   min-width: 0;
 }
 @media (max-width: 620px) {
-  .page > :is(.account-intro,.dashboard-heading,.heading) {
-    margin-bottom: 28px !important;
-  }
+  .page > .page-heading { margin-bottom: 28px !important; }
+}
+
+:is(.active-link,.top-link.active-link) {
+  border-left-color: var(--shared-orange);
+}
+html[data-theme="light"] .global-auth .button:hover {
+  border-color: var(--shared-orange);
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.panel,.status-card,.stat) { transition: none; }
 }

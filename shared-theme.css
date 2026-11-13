@@ -77,28 +77,28 @@ html[data-theme="dark"] :is(.panel,.status-card,.stat) {
 /* Every page title and subtitle has exactly the same typography and spacing.
    Older page-specific title declarations are deliberately superseded here. */
 .page > .page-heading {
-  margin-top: 0 !important;
-  margin-bottom: 36px !important;
+  margin-top: 0;
+  margin-bottom: 36px;
 }
 .page > .page-heading h1 {
-  margin: 0 !important;
+  margin: 0;
   color: var(--ink);
-  font-size: 1.75rem !important;
-  font-weight: 700 !important;
-  line-height: 1.2 !important;
-  letter-spacing: -.035em !important;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.035em;
 }
 .page > .page-heading p {
-  margin: 8px 0 0 !important;
-  color: var(--muted) !important;
-  font-size: .88rem !important;
-  line-height: 1.45 !important;
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: .88rem;
+  line-height: 1.45;
 }
 .page > .page-heading > div {
   min-width: 0;
 }
 @media (max-width: 620px) {
-  .page > .page-heading { margin-bottom: 28px !important; }
+  .page > .page-heading { margin-bottom: 28px; }
 }
 
 :is(.active-link,.top-link.active-link) {

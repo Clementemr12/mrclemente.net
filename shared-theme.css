@@ -68,3 +68,28 @@ html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat,.home-ca
   background-color: var(--shared-tile-dark) !important;
   border-color: var(--shared-tile-dark-border) !important;
 }
+
+/* Testing pages share Home's 980px viewport-centered content width.
+   The sidebar changes independently and never shifts the page. */
+@media (min-width: 901px) {
+  body .page.testing-page,
+  body.sidebar-collapsed .page.testing-page {
+    margin-left: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 72px !important;
+    padding-right: 72px !important;
+    box-sizing: border-box;
+    transform: none !important;
+    transition: none !important;
+  }
+  .page.testing-page > :is(.dashboard-heading,.heading,.status-grid,.stats,.main-grid,.panel,.footer) {
+    width: 100%;
+    max-width: min(980px, calc(100vw - 144px));
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    transform: none !important;
+    transition: none !important;
+  }
+}

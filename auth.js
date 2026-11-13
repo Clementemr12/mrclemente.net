@@ -21,6 +21,18 @@
     if (login) login.hidden = !!user;
     if (signup) signup.hidden = !!user;
     if (logout) logout.hidden = !user;
+    // Populate homepage overview only when those elements are present.
+    const set = (id, value) => { const el = $(id); if (el) el.textContent = value; };
+    const signedIn = !!user;
+    const provider = user?.sub?.split("|")[0] || null;
+    const providerNames = {auth0:"Auth0 database",google-oauth2:"Google",github:"GitHub",windowslive:"Microsoft",apple:"Apple"};
+    set("homeAuthState", signedIn ? "Signed in" : "Not signed in");
+    set("homeUserName", signedIn ? (user.name || user.nickname || user.email || "Signed-in user") : "Not signed in");
+    set("homeUserEmail", signedIn ? (user.email || "No email provided") : "Log in to see your account");
+    set("homeSession", signedIn ? "Active" : "Anonymous");
+    set("homeProvider", signedIn ? (providerNames[provider] || provider || "Unknown") : "—");
+    set("homeVerified", signedIn ? (user.email_verified === true ? "Yes" : user.email_verified === false ? "No" : "Unknown") : "—");
+
   }
   function fail(error) {
     console.error("Auth0 authentication error:", error);

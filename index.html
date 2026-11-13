@@ -1131,6 +1131,28 @@ html[data-theme="dark"] body {
   .sidebar-toggle-text { font-size:12.48px; }
   body.sidebar-collapsed .brand .top-link { font-size:0; }
 }
+
+/* Alchemer sometimes injects white inline backgrounds: remove them only inside survey. */
+#featuredSurvey,
+#featuredSurvey .sg-body,
+#featuredSurvey .sg-wrapper,
+#featuredSurvey .sg-content,
+#featuredSurvey .sg-survey,
+#featuredSurvey .sg-survey-form,
+#featuredSurvey .sg-page,
+#featuredSurvey .sg-question,
+#featuredSurvey .sg-question-set,
+#featuredSurvey .sg-container,
+#featuredSurvey .sg-footer,
+#featuredSurvey form,
+#featuredSurvey > div {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+#featuredSurvey :is(.sg-question-title,.sg-question-title label,.sg-question-options,.sg-question-options label,.sg-question-options span,.sg-question) {
+  color: var(--ink) !important;
+}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

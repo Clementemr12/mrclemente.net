@@ -1107,6 +1107,21 @@ html[data-theme="dark"] body {
 }
 .home-survey-embed :is(.sg-progress-bar,.sg-progress,.sg-footer .sg-progress-bar) {display:none!important}
 .home-survey-embed :is(.sg-footer,.sg-question) {border:0!important;box-shadow:none!important}
+
+/* Keep homepage typography at the same scale as the SDK dashboard.
+   Alchemer's direct embed can introduce global rem/font rules. */
+html {font-size:16px!important}
+@media(min-width:901px) {
+ .site-header {width:270px!important}
+ .header-inner {width:100%!important;box-sizing:border-box}
+ .sidebar-brand img {width:48px!important;height:48px!important}
+ .sidebar-brand strong {font-size:14.56px!important}
+ .sidebar-brand small {font-size:11.04px!important}
+ .brand .top-link {font-size:14.08px!important;padding:11px 13px!important}
+ .sidebar-toggle-text {font-size:12.48px!important}
+ body.sidebar-collapsed .site-header {width:86px!important}
+ body.sidebar-collapsed .brand .top-link {font-size:0!important}
+}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>

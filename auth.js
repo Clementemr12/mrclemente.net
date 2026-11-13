@@ -37,6 +37,27 @@
     set("homeVerified", signedIn ? (user.email_verified === true ? "Yes" : user.email_verified === false ? "No" : "Unknown") : "—");
 
   }
+  async function loadTotalUsers(user) {
+    const el = $("homeTotalUsers");
+    if (!el) return;
+    if (!user) { el.textContent = "Sign in required"; return; }
+    el.textContent = "Loading…";
+    try {
+      const token = await client.getTokenSilently({ authorizationParams: { audience: config.authorizationParams.audience } });
+      const response = await fetch("https://oaokqzaietaaxjreobqb.supabase.co/functions/v1/Auth0-Overview", {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" },
+        body: "{}"
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Unable to retrieve user count");
+      el.textContent = Number(data.total_users).toLocaleString();
+    } catch (error) {
+      console.error("Auth0 total users:", error);
+      el.textContent = "Unavailable";
+      el.title = error.message || "Unable to load total users";
+    }
+  }
   function fail(error) {
     console.error("Auth0 authentication error:", error);
     render(null);
@@ -79,7 +100,9 @@
       history.replaceState({}, document.title, window.location.pathname + window.location.hash);
       throw new Error(message);
     }
-    render((await client.isAuthenticated()) ? await client.getUser() : null);
+    const user = (await client.isAuthenticated()) ? await client.getUser() : null;
+    render(user);
+    if (user) void loadTotalUsers(user);
   }
   async function ensureClient() {
     if (client) return client;

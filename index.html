@@ -1022,6 +1022,17 @@ html[data-theme="dark"] body {
 .home-hero h1 { font-size: clamp(1.55rem, 2.4vw, 2rem); }
 .home-cards { width: min(100%, 840px); margin: 76px auto 110px; }
 @media (max-width: 700px) { .home-cards { margin-top: 52px; margin-bottom: 70px; } }
+
+/* Homepage survey: allow room for the comment question, suppress navigation chrome. */
+.home-survey-embed {min-height:680px!important;overflow:visible!important;}
+.home-survey-embed iframe {height:680px!important;min-height:680px!important;}
+.home-survey-embed :is(.sg-footer,.sg-button-bar,.sg-next-button,.sg-back-button,.sg-submit-button,.sg-progress-bar) {display:none!important;}
+.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-question-set) {min-height:600px;max-height:none!important;overflow:visible!important;}
+.home-survey-embed textarea.sg-input-essay {min-height:150px;max-width:100%;box-sizing:border-box;}
+@media(max-width:700px) {
+ .home-survey-embed {min-height:760px!important;}
+ .home-survey-embed iframe {height:760px!important;min-height:760px!important;}
+}
 </style>
   <link rel="stylesheet" href="./shared-theme.css">
 <style>
@@ -1177,7 +1188,7 @@ html[data-theme="dark"] body {
  <button class="button button-secondary button-small" id="logoutButton" type="button" hidden>Log Out</button>
 </div>
 <main class="page">
- <section class="home-hero"><div class="home-eyebrow">Welcome</div><h1>Matt's Web App</h1><p>A home for web integrations, experiments, and testing tools. Choose a workspace below to get started.</p></section>
+ <section class="home-hero"><h1>Matt's Web App</h1><p>A home for web integrations, experiments, and testing tools. Choose a workspace below to get started.</p></section>
  <section class="home-survey-section" aria-label="Featured survey">
   <div class="home-survey-card">
    

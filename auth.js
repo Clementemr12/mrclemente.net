@@ -26,7 +26,7 @@
     const set = (id, value) => { const el = $(id); if (el) el.textContent = value; };
     const signedIn = !!user;
     const provider = user?.sub?.split("|")[0] || null;
-    const providerNames = {auth0:"Auth0 database",google-oauth2:"Google",github:"GitHub",windowslive:"Microsoft",apple:"Apple"};
+    const providerNames = {auth0:"Auth0 database","google-oauth2":"Google",github:"GitHub",windowslive:"Microsoft",apple:"Apple"};
     set("homeAuthState", signedIn ? "Signed in" : "Not signed in");
     set("homeUserName", signedIn ? (user.name || user.nickname || user.email || "Signed-in user") : "Not signed in");
     set("homeUserEmail", signedIn ? (user.email || "No email provided") : "Log in to see your account");

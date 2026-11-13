@@ -65,10 +65,9 @@
         return Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
       };
       const details = data.current_user || {};
-      const member = $("homeMemberSince"), last = $("homeLastLogin"), logins = $("homeAccountLogins");
+      const member = $("homeMemberSince"), last = $("homeLastLogin");
       if (member) member.textContent = formatDate(details.created_at);
       if (last) last.textContent = formatDate(details.last_login);
-      if (logins) logins.textContent = Number.isInteger(details.logins_count) ? details.logins_count.toLocaleString() : "—";
       const updated = $("homeProfileUpdated"), mfa = $("homeMfa"), account = $("homeAccountStatus");
       if (updated) updated.textContent = formatDate(details.updated_at || user.updated_at);
       if (mfa) mfa.textContent = Array.isArray(details.multifactor) && details.multifactor.length ? "Yes" : "No enrolled factors";

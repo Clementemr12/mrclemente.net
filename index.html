@@ -1212,6 +1212,25 @@ html[data-theme="dark"] body {
 .account-home{padding-top:112px!important}
 @media(max-width:1100px){.account-home{padding-top:90px!important}}
 @media(max-width:700px){.account-home{padding-top:22px!important}}
+
+.auth0-insights{max-width:920px;margin-top:30px}
+.auth0-section-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:16px}
+.auth0-section-title h2{font-size:1.15rem;letter-spacing:-.02em;margin:0}
+.auth0-section-title>span,.auth0-muted{font-size:.8rem;color:var(--muted)}
+.auth0-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.auth0-metric,.auth0-detail{border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 86%,transparent);border-radius:15px;padding:21px}
+.auth0-metric{display:flex;flex-direction:column;gap:10px}
+.auth0-metric>span{color:var(--muted);font-size:.8rem}
+.auth0-metric strong{font-size:1.6rem;letter-spacing:-.04em}
+.auth0-lower{display:grid;grid-template-columns:1fr 1.4fr;gap:14px;margin-top:14px}
+.auth0-detail h3{font-size:.94rem;margin:0 0 18px}
+.auth0-provider-list,.auth0-recent-list{display:flex;flex-direction:column;gap:0}
+.auth0-data-row{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:.84rem;min-width:0}
+.auth0-data-row:first-child{border-top:0}
+.auth0-data-row strong{font-size:.84rem}
+.auth0-data-row small{color:var(--muted);font-size:.73rem}
+.auth0-user-label{min-width:0;display:flex;flex-direction:column;gap:4px;overflow-wrap:anywhere}
+@media(max-width:650px){.auth0-metrics{grid-template-columns:1fr 1fr}.auth0-lower{grid-template-columns:1fr}.auth0-section-title{flex-direction:column}}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1250,6 +1269,18 @@ html[data-theme="dark"] body {
       <div class="account-stat"><span class="account-caption">Total users</span><strong id="homeTotalUsers">Sign in required</strong><small>Registered Auth0 users</small></div>
     </div>
   </section>
+  <section class="auth0-insights" aria-label="Auth0 organization statistics">
+    <div class="auth0-section-title"><h2>Organization insights</h2><span>Last 30 days and recent accounts</span></div>
+    <div class="auth0-metrics">
+      <div class="auth0-metric"><span>New this week</span><strong id="homeNewWeek">—</strong></div>
+      <div class="auth0-metric"><span>New this month</span><strong id="homeNewMonth">—</strong></div>
+      <div class="auth0-metric"><span>Verified accounts</span><strong id="homeVerifiedCount">—</strong></div>
+    </div>
+    <div class="auth0-lower">
+      <section class="auth0-detail"><h3>Identity providers</h3><div id="homeProviders" class="auth0-provider-list"><span class="auth0-muted">Sign in to view</span></div></section>
+      <section class="auth0-detail"><h3>Recently registered</h3><div id="homeRecentUsers" class="auth0-recent-list"><span class="auth0-muted">Sign in to view</span></div></section>
+    </div>
+  </section>
   <p class="account-footnote">Sign in to view your account details. Organization-wide statistics require a secure server connection.</p>
 </main>
 <script>
@@ -1282,6 +1313,6 @@ html[data-theme="dark"] body {
       else if (media.addListener) media.addListener(systemChanged);
     })();
   </script>
-<script src="./auth.js?v=20261112-6" defer></script>
+<script src="./auth.js?v=20261112-7" defer></script>
 </body>
 </html>

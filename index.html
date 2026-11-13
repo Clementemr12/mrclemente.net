@@ -1068,6 +1068,15 @@ html[data-theme="dark"] body {
 .home-survey-section {background:transparent!important}
 .home-survey-embed {background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
 .home-survey-embed iframe {background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+
+/* Layout correction: header near top, survey has no extra heading or framing */
+.page {padding-top:18px!important}
+.home-hero {padding-top:12px!important;padding-bottom:0!important}
+.home-survey-section {padding-top:58px!important}
+.home-survey-heading {display:none!important}
+.home-survey-card {width:min(100%,800px)!important}
+.home-survey-embed iframe {border-radius:0!important}
+@media(max-width:700px){.page{padding-top:12px!important}.home-hero{padding-top:8px!important}.home-survey-section{padding-top:42px!important}}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1095,7 +1104,7 @@ html[data-theme="dark"] body {
  <section class="home-hero"><div class="home-eyebrow">Welcome</div><h1>Matt's Web App</h1><p>A home for web integrations, experiments, and testing tools. Choose a workspace below to get started.</p></section>
  <section class="home-survey-section" aria-label="Featured survey">
   <div class="home-survey-card">
-   <div class="home-survey-heading"><span class="home-eyebrow">Featured survey</span><h2>Share your feedback</h2></div>
+   
    <div class="home-survey-embed" id="featuredSurvey">
     <iframe src="https://survey.alchemer.com/s3/9102080/21637fa8c852" title="Featured Alchemer survey" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
    </div>

@@ -59,6 +59,8 @@
       metric("homeNewWeek", data.new_7d);
       metric("homeNewMonth", data.new_30d);
       metric("homeVerifiedCount", data.verified_users);
+      const verification = $("homeVerified");
+      if (verification) verification.textContent = user.email_verified === true ? "Email verified" : user.email_verified === false ? "Email not verified" : "Verification unknown";
       const providerNames = { auth0: "Auth0 database", google: "Google", github: "GitHub", windowslive: "Microsoft", apple: "Apple" };
       const providers = $("homeProviders");
       if (providers) {
@@ -74,28 +76,6 @@
           count.textContent = String(entry.count);
           row.append(label, count);
           providers.append(row);
-        }
-      }
-      const recent = $("homeRecentUsers");
-      if (recent) {
-        recent.replaceChildren();
-        const entries = Array.isArray(data.recent_users) ? data.recent_users : [];
-        if (!entries.length) recent.textContent = "No accounts found";
-        for (const entry of entries) {
-          const row = document.createElement("div");
-          row.className = "auth0-data-row";
-          const info = document.createElement("span");
-          info.className = "auth0-user-label";
-          const label = document.createElement("strong");
-          label.textContent = entry.email || entry.name || "Unnamed account";
-          const date = document.createElement("small");
-          const parsed = entry.created_at ? new Date(entry.created_at) : null;
-          date.textContent = parsed && !Number.isNaN(parsed.getTime()) ? "Joined " + parsed.toLocaleDateString() : "Creation date unavailable";
-          info.append(label, date);
-          const verified = document.createElement("small");
-          verified.textContent = entry.email_verified ? "Verified" : "Unverified";
-          row.append(info, verified);
-          recent.append(row);
         }
       }
 

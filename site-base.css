@@ -372,8 +372,6 @@
     .page { width: auto; max-width: 1440px; margin: 0 0 0 242px; padding: 38px 32px 50px; }
     .dashboard-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 27px; }
 
-    .dashboard-heading h1 { margin: 5px 0 4px; font-size: clamp(1.55rem, 2.5vw, 2rem); letter-spacing: -.035em; color: #f7f8fb; }
-    .dashboard-heading p { margin: 0; color: #a0a9bb; font-size: .83rem; }
 
     .status-grid { gap: 14px; margin-bottom: 20px; }
     .status-card, .panel { background: #30353f; border: 1px solid #414753; border-radius: 9px; box-shadow: 0 4px 12px rgba(0,0,0,.11); }
@@ -684,12 +682,11 @@
     html[data-theme="light"] body { background: #f2f4f8; color: #273241; }
     html[data-theme="light"] .site-header { background: transparent; border-color: transparent; }
     html[data-theme="light"] .sidebar-brand, html[data-theme="light"] .sidebar-brand strong { color: #273241; border-color: #dce2e9; }
-    html[data-theme="light"] .sidebar-brand small, html[data-theme="light"] .heading p, html[data-theme="light"] .dashboard-heading p { color: #647186; }
+    html[data-theme="light"] .sidebar-brand small { color: #647186; }
     html[data-theme="light"] .brand .top-link, html[data-theme="light"] .brand-name.top-link { color: #526074; }
     html[data-theme="light"] .brand .active-link { background: #e2e7ef; color: #263242; }
     html[data-theme="light"] .brand .top-link:hover { background: #e6ebf2; color: #263242; }
     html[data-theme="light"] .sidebar-toggle { background: #fff; color: #526074; border-color: #d5dce5; }
-    html[data-theme="light"] .dashboard-heading h1, html[data-theme="light"] .heading h1 { color: #243040; }
 
     html[data-theme="light"] .status-card, html[data-theme="light"] .stat, html[data-theme="light"] .panel { background: #fff; border-color: #d7dee8; box-shadow: 0 9px 25px rgba(37,52,73,.1),0 2px 6px rgba(37,52,73,.05); }
     html[data-theme="light"] .panel:hover, html[data-theme="light"] .status-card:hover { border-color: #bdc9d8; box-shadow: 0 12px 27px rgba(37,52,73,.12); }

@@ -1037,6 +1037,19 @@ html[data-theme="dark"] body {
 .global-auth [hidden] {display:none!important}
 #authStatus[data-authenticated="true"] .dot {background:#28b67a}
 @media(max-width:700px){.home-cards{grid-template-columns:1fr}.home-hero{padding-top:22px}}
+
+/* Final homepage layout overrides: intentionally smaller title and generous whitespace */
+.home-hero {max-width:680px;padding:clamp(50px,8vh,95px) 0 22px}
+.home-hero h1 {font-size:clamp(1.5rem,2.1vw,2rem);line-height:1.25;letter-spacing:-.025em;margin:10px 0 12px}
+.home-hero p {font-size:.95rem;line-height:1.7;max-width:480px}
+.home-survey-section {display:flex;justify-content:center;padding:clamp(46px,8vh,90px) 0 0}
+.home-survey-card {width:min(100%,720px);padding:clamp(22px,3vw,38px);background:color-mix(in srgb,var(--surface) 92%,transparent);border:1px solid var(--line);border-radius:20px;box-shadow:0 22px 65px rgba(17,24,39,.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.home-survey-heading {text-align:center;margin-bottom:24px}
+.home-survey-heading h2 {font-size:1.15rem;margin:8px 0 0;letter-spacing:-.02em}
+.home-survey-embed {width:100%;min-height:260px;overflow:visible}
+.home-survey-embed iframe {max-width:100%;border:0}
+.home-cards {width:min(100%,840px);margin:clamp(100px,15vh,175px) auto 110px;gap:24px}
+@media(max-width:700px){.home-hero{padding:38px 0 12px}.home-survey-section{padding-top:40px}.home-survey-card{padding:20px 14px}.home-cards{margin:78px auto 75px;grid-template-columns:1fr}}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1062,6 +1075,15 @@ html[data-theme="dark"] body {
 </div>
 <main class="page">
  <section class="home-hero"><div class="home-eyebrow">Welcome</div><h1>Matt's Web App</h1><p>A home for web integrations, experiments, and testing tools. Choose a workspace below to get started.</p></section>
+ <section class="home-survey-section" aria-label="Featured survey">
+  <div class="home-survey-card">
+   <div class="home-survey-heading"><span class="home-eyebrow">Featured survey</span><h2>Share your feedback</h2></div>
+   <div class="home-survey-embed" id="featuredSurvey">
+    <script type="text/javascript">document.write('<script src="https://survey.alchemer.com/s3/9102080/21637fa8c852?__output=embedjs&__ref=' + encodeURIComponent(document.location.href) + '" type="text/javascript"><\/script>');</script>
+    <noscript><a href="https://survey.alchemer.com/s3/9102080/21637fa8c852?jsfallback=true">Take the survey</a></noscript>
+   </div>
+  </div>
+ </section>
  <section class="home-cards" aria-label="Testing tools">
   <a class="home-card" href="./sdk-testing.html"><span class="home-icon">⌁</span><h2>SDK Testing</h2><p>Test Alchemer Digital events, conversations, Auth0 identity, and Supabase interaction eligibility.</p><span class="home-open">Open SDK Testing →</span></a>
   <a class="home-card" href="./survey-embed.html"><span class="home-icon">▤</span><h2>Survey Embed Testing</h2><p>Preview and reload embedded Alchemer surveys using the survey testing workspace.</p><span class="home-open">Open Survey Embed →</span></a>

@@ -1085,42 +1085,51 @@ html[data-theme="dark"] body {
 @media(max-width:700px){.page{padding-top:85px!important}.home-hero{padding-top:0!important}}
 @media(max-width:480px){.page{padding-top:22px!important}}
 
-/* Embedded survey: blend the direct Alchemer JS output into the homepage */
-.home-survey-section {justify-content:center}
-.home-survey-card,.home-survey-embed {background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
-.home-survey-embed {min-height:0!important;width:100%!important;overflow:visible!important}
-.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-survey-form,.sg-body,.sg-question,.sg-question-set,.sg-page,.sg-header,.sg-footer,.sg-survey,.sg-container) {
-  background:transparent!important;background-color:transparent!important;
-  border-color:transparent!important;box-shadow:none!important;
-  max-width:100%!important;box-sizing:border-box!important;
+/* Alchemer survey presentation — edit these rules without modifying the survey. */
+.home-survey-card,
+.home-survey-embed {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
 }
-.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-survey-form,.sg-page,.sg-container) {width:100%!important;min-width:0!important}
-.home-survey-embed .sg-header {display:none!important}
-.home-survey-embed :is(.sg-question-title,.sg-question-title label,.sg-question-options label,.sg-question-options span,.sg-question) {color:var(--ink)!important}
-.home-survey-embed :is(input[type=radio],input[type=checkbox]) {accent-color:#e88945}
-.home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type=submit]) {background:#e88945!important;color:#172033!important;border:0!important;border-radius:10px!important;max-width:100%!important}
-.home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type=submit]):hover {background:#cf7130!important}
-.home-survey-embed img,.home-survey-embed iframe,.home-survey-embed table {max-width:100%!important}
-
-.home-survey-embed, .home-survey-embed :is(.sg-question,.sg-question-title,.sg-question-options,.sg-question-options label,.sg-footer,.sg-submit-button) {
- font-family:inherit!important;
+.home-survey-embed { width: 100%; min-height: 0; overflow: visible; }
+.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-survey-form,.sg-question,.sg-question-set,.sg-page,.sg-header,.sg-footer,.sg-container) {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  box-sizing: border-box;
+  max-width: 100% !important;
 }
-.home-survey-embed :is(.sg-progress-bar,.sg-progress,.sg-footer .sg-progress-bar) {display:none!important}
-.home-survey-embed :is(.sg-footer,.sg-question) {border:0!important;box-shadow:none!important}
+.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-survey-form,.sg-page,.sg-container) {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+.home-survey-embed .sg-header,
+.home-survey-embed :is(.sg-progress-bar,.sg-progress) { display: none !important; }
+.home-survey-embed :is(.sg-question,.sg-question-title,.sg-question-options,.sg-question-options label,.sg-submit-button,.sg-next-button) {
+  font-family: inherit !important;
+  color: var(--ink) !important;
+}
+.home-survey-embed :is(input[type="radio"],input[type="checkbox"]) { accent-color: #e88945; }
+.home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type="submit"]) {
+  background: #e88945 !important;
+  color: #172033 !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  max-width: 100%;
+}
+.home-survey-embed img,.home-survey-embed iframe,.home-survey-embed table { max-width: 100%; }
 
-/* Keep homepage typography at the same scale as the SDK dashboard.
-   Alchemer's direct embed can introduce global rem/font rules. */
-html {font-size:16px!important}
-@media(min-width:901px) {
- .site-header {width:270px!important}
- .header-inner {width:100%!important;box-sizing:border-box}
- .sidebar-brand img {width:48px!important;height:48px!important}
- .sidebar-brand strong {font-size:14.56px!important}
- .sidebar-brand small {font-size:11.04px!important}
- .brand .top-link {font-size:14.08px!important;padding:11px 13px!important}
- .sidebar-toggle-text {font-size:12.48px!important}
- body.sidebar-collapsed .site-header {width:86px!important}
- body.sidebar-collapsed .brand .top-link {font-size:0!important}
+/* Match the shared navigation scale, independently of Alchemer's global styles. */
+@media (min-width:901px) {
+  .sidebar-brand img { width:48px; height:48px; }
+  .sidebar-brand strong { font-size:14.56px; }
+  .sidebar-brand small { font-size:11.04px; }
+  .brand .top-link { font-size:14.08px; }
+  .sidebar-toggle-text { font-size:12.48px; }
+  body.sidebar-collapsed .brand .top-link { font-size:0; }
 }
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>

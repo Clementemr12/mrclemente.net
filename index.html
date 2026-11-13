@@ -1084,6 +1084,23 @@ html[data-theme="dark"] body {
 @media(max-width:900px){.page{padding-top:90px!important}}
 @media(max-width:700px){.page{padding-top:85px!important}.home-hero{padding-top:0!important}}
 @media(max-width:480px){.page{padding-top:22px!important}}
+
+/* Embedded survey: blend the direct Alchemer JS output into the homepage */
+.home-survey-section {justify-content:center}
+.home-survey-card,.home-survey-embed {background:none!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important}
+.home-survey-embed {min-height:0!important;width:100%!important;overflow:visible!important}
+.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-survey-form,.sg-body,.sg-question,.sg-question-set,.sg-page,.sg-header,.sg-footer,.sg-survey,.sg-container) {
+  background:transparent!important;background-color:transparent!important;
+  border-color:transparent!important;box-shadow:none!important;
+  max-width:100%!important;box-sizing:border-box!important;
+}
+.home-survey-embed :is(.sg-wrapper,.sg-content,.sg-survey-form,.sg-page,.sg-container) {width:100%!important;min-width:0!important}
+.home-survey-embed .sg-header {display:none!important}
+.home-survey-embed :is(.sg-question-title,.sg-question-title label,.sg-question-options label,.sg-question-options span,.sg-question) {color:var(--ink)!important}
+.home-survey-embed :is(input[type=radio],input[type=checkbox]) {accent-color:#e88945}
+.home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type=submit]) {background:#e88945!important;color:#172033!important;border:0!important;border-radius:10px!important;max-width:100%!important}
+.home-survey-embed :is(.sg-submit-button,.sg-next-button,input[type=submit]):hover {background:#cf7130!important}
+.home-survey-embed img,.home-survey-embed iframe,.home-survey-embed table {max-width:100%!important}
 </style>
 <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
 <script>(function(){let saved;try{saved=localStorage.getItem("matt-web-app-theme")}catch(e){}document.documentElement.dataset.theme=saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark")})();</script>
@@ -1113,7 +1130,10 @@ html[data-theme="dark"] body {
   <div class="home-survey-card">
    
    <div class="home-survey-embed" id="featuredSurvey">
-    <iframe src="https://survey.alchemer.com/s3/9102080/21637fa8c852" title="Featured Alchemer survey" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <script type="text/javascript">
+     document.write('<script src="https://survey.alchemer.com/s3/9102080/21637fa8c852?__output=embedjs&__ref=' + encodeURIComponent(document.location.href) + '" type="text/javascript"><\/script>');
+    </script>
+    <noscript><a href="https://survey.alchemer.com/s3/9102080/21637fa8c852?jsfallback=true">Open the survey</a></noscript>
    </div>
   </div>
  </section>

@@ -992,6 +992,31 @@
     @media (prefers-reduced-motion: reduce) {
       .panel, .status-card, .stat, .event-button, .button { transition: none !important; }
     }
+
+/* Homepage: restrained typography, spacious layout, layered ambient gradient */
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 68% 52% at 87% 12%, rgba(255, 167, 102, .34), transparent 75%),
+    radial-gradient(ellipse 58% 58% at 10% 68%, rgba(127, 201, 238, .27), transparent 78%),
+    radial-gradient(ellipse 52% 45% at 70% 92%, rgba(251, 199, 152, .23), transparent 78%),
+    linear-gradient(135deg, #f8fafc 0%, #f6f5f7 45%, #fff2e8 100%);
+  background-attachment: fixed;
+}
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(ellipse 68% 52% at 88% 9%, rgba(202, 104, 53, .20), transparent 75%),
+    radial-gradient(ellipse 65% 58% at 8% 75%, rgba(65, 129, 165, .19), transparent 78%),
+    linear-gradient(135deg, #181d28 0%, #202634 55%, #2a2529 100%);
+  background-attachment: fixed;
+}
+.home-hero {padding: clamp(68px, 11vh, 140px) 0 58px; max-width: 690px;}
+.home-hero h1 {font-size: clamp(1.9rem, 3.2vw, 2.65rem); line-height: 1.2; letter-spacing: -.035em; margin: 12px 0 16px;}
+.home-hero p {font-size: 1rem; line-height: 1.75; max-width: 510px;}
+.home-cards {max-width: 900px; gap: 24px; margin-top: 18px; margin-bottom: 110px;}
+.home-card {background: color-mix(in srgb, var(--surface) 89%, transparent); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);}
+@media(max-width:700px){.home-hero{padding:48px 0 35px}.home-cards{margin-bottom:70px}}
+
 </style>
 <style>
 .home-hero {padding:44px 0 32px;max-width:790px}

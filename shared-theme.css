@@ -11,16 +11,6 @@
   --shared-shadow: 0 12px 32px rgba(25,38,68,.08);
 }
 
-/* Global background, consistent in light and dark mode. */
-html[data-theme="light"] body {
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse 68% 52% at 87% 12%, rgba(255,167,102,.34), transparent 75%),
-    radial-gradient(ellipse 58% 58% at 10% 68%, rgba(127,201,238,.27), transparent 78%),
-    radial-gradient(ellipse 52% 45% at 70% 92%, rgba(251,199,152,.23), transparent 78%),
-    linear-gradient(135deg,#f8fafc 0%,#f6f5f7 45%,#fff2e8 100%);
-  background-attachment: fixed;
-}
 html[data-theme="dark"] body {
   min-height: 100vh;
   background:
@@ -35,10 +25,7 @@ html[data-theme="dark"] body {
   border-radius: var(--shared-card-radius);
   box-shadow: var(--shared-shadow);
 }
-html[data-theme="light"] :is(.account-overview,.panel,.status-card,.stat) {
-  background-color: var(--shared-tile-light) !important;
-  border-color: var(--shared-tile-light-border) !important;
-}
+
 html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat) {
   background-color: var(--shared-tile-dark) !important;
   border-color: var(--shared-tile-dark-border) !important;
@@ -104,9 +91,7 @@ html[data-theme="dark"] :is(.panel,.status-card,.stat) {
 :is(.active-link,.top-link.active-link) {
   border-left-color: var(--shared-orange);
 }
-html[data-theme="light"] .global-auth .button:hover {
-  border-color: var(--shared-orange);
-}
+
 @media (prefers-reduced-motion: reduce) {
   :is(.panel,.status-card,.stat) { transition: none; }
 }

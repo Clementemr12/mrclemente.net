@@ -11,6 +11,7 @@
     useRefreshTokens: false
   };
   let client;
+  let readyPromise;
   const $ = (id) => document.getElementById(id);
   const status = $("authStatusText");
   const login = $("loginButton"), signup = $("signupButton"), logout = $("logoutButton");
@@ -46,7 +47,26 @@
     if (email) email.textContent = error?.message || "Try refreshing or signing in again";
   }
   async function start() {
-    if (!window.auth0?.createAuth0Client) throw new Error("Auth0 SDK did not load");
+    if (!window.auth0?.createAuth0Client) {
+      // Recover if the external SDK script failed or loaded after auth.js.
+      const sources = [
+        "https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js",
+        "https://cdn.jsdelivr.net/npm/@auth0/auth0-spa-js@2.1.3/dist/auth0-spa-js.production.js"
+      ];
+      for (const src of sources) {
+        if (window.auth0?.createAuth0Client) break;
+        try {
+          await new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = () => reject(new Error("Failed to load " + src));
+            document.head.appendChild(script);
+          });
+        } catch (error) { console.warn(error); }
+      }
+    }
+    if (!window.auth0?.createAuth0Client) throw new Error("Auth0 SDK could not be loaded");
     client = await window.auth0.createAuth0Client(config);
     const query = new URLSearchParams(window.location.search);
     if (query.has("code") && query.has("state")) {
@@ -59,15 +79,34 @@
     }
     render((await client.isAuthenticated()) ? await client.getUser() : null);
   }
-  login?.addEventListener("click", () => client?.loginWithRedirect({
-    authorizationParams: { audience: config.authorizationParams.audience }
-  }).catch(fail));
-  signup?.addEventListener("click", () => client?.loginWithRedirect({
-    authorizationParams: { audience: config.authorizationParams.audience, screen_hint: "signup" }
-  }).catch(fail));
-  logout?.addEventListener("click", () => client?.logout({
-    logoutParams: { returnTo: window.location.origin }
-  }));
+  async function ensureClient() {
+    if (client) return client;
+    if (!readyPromise) readyPromise = start();
+    await readyPromise;
+    if (!client) throw new Error("Auth0 client unavailable");
+    return client;
+  }
+  login?.addEventListener("click", async () => {
+    try {
+      const authClient = await ensureClient();
+      await authClient.loginWithRedirect({ authorizationParams: { audience: config.authorizationParams.audience } });
+    } catch (error) { fail(error); }
+  });
+  signup?.addEventListener("click", async () => {
+    try {
+      const authClient = await ensureClient();
+      await authClient.loginWithRedirect({ authorizationParams: { audience: config.authorizationParams.audience, screen_hint: "signup" } });
+    } catch (error) { fail(error); }
+  });
+  logout?.addEventListener("click", async () => {
+    try {
+      const authClient = await ensureClient();
+      await authClient.logout({ logoutParams: { returnTo: window.location.origin } });
+    } catch (error) { fail(error); }
+  });
+  // Never leave the account UI stuck on a loading placeholder.
+  render(null);
+  readyPromise = start();
   const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error("Auth0 session check timed out")), 12000));
-  Promise.race([start(), timeout]).catch(fail);
+  Promise.race([readyPromise, timeout]).catch(fail);
 })();

@@ -244,7 +244,6 @@
       element.textContent = text;
       element.className = "status-text " + tone;
       element.dataset.tone = tone;
-      refreshInspector();
     }
 
     function addHistory(type, message) {
@@ -295,25 +294,6 @@
         const startup = hideStartup && /system|storage|sdk event|auth|conversation|custom data/.test(t) && !/error|warning/.test(t);
         entry.hidden = !category || startup || !(type + " " + message).toLowerCase().includes(search);
       });
-    }
-    function sessionReport() {
-      return [
-        "Auth0: " + (state.authUser ? "Authenticated" : state.authReady ? "Anonymous" : "Checking"),
-        "Auth0 user ID: " + (state.authUser?.sub || "Anonymous"),
-        "Alchemer conversation ID: " + (state.conversationId || "Not reported"),
-        "SDK API available: " + state.sdkReady,
-        "Conversation initialized: " + state.conversationRequested,
-        "Person fields supplied: " + JSON.stringify(state.requestedPerson || null, null, 2),
-        "Most recent event: " + $("lastEvent").textContent
-      ].join("\n");
-    }
-    function refreshInspector() {
-      if (!$("inspectorAuth")) return;
-      $("inspectorAuth").textContent = state.authUser ? "Authenticated" : state.authReady ? "Anonymous" : "Checking…";
-      $("inspectorUser").textContent = state.authUser?.sub || "Anonymous";
-      $("inspectorConversation").textContent = state.conversationId || "Not reported by callback";
-      $("inspectorSdk").textContent = (state.sdkReady ? "SDK available" : "SDK unavailable") + " / " + (state.conversationRequested ? "Initialized" : "Not initialized");
-      $("inspectorData").textContent = JSON.stringify(state.requestedPerson || null, null, 2);
     }
     async function copyText(value, description) {
       try { await navigator.clipboard.writeText(value); addHistory("TOOLS", description + " copied to clipboard."); }
@@ -404,7 +384,6 @@
           const conversationId = data.conversation_id || data.conversationId || data.id;
           if (conversationId) { state.conversationId = String(conversationId); addHistory("CONVERSATION", "Alchemer returned conversation ID: " + String(conversationId)); }
         }
-        refreshInspector();
         syncSeenSingleUsePrompt();
       };
 
@@ -435,7 +414,6 @@
         }
         addHistory("CONVERSATION", user ? "Calling createConversation with Auth0 person fields." : "Calling createConversation without authenticated person fields.");
         state.requestedPerson = options.person || null;
-        refreshInspector();
         sdk.createConversation(options);
       } catch (error) {
         fail(error);
@@ -456,7 +434,6 @@
       $("supabaseTestResult").closest(".tool-console").classList.toggle("anonymous", !user);
       $("authStatusText").textContent = user ? (user.email || user.name || user.sub || "Signed in") : "Anonymous";
       updateAuthProfile(user);
-      refreshInspector();
       ["testSupabaseButton", "resetInteractionsButton"].forEach(id => $(id).disabled = !user || state.interactionTestBusy);
       $("loginButton").hidden = Boolean(user);
       $("signupButton").hidden = Boolean(user);

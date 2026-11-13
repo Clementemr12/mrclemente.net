@@ -992,6 +992,9 @@
     @media (prefers-reduced-motion: reduce) {
       .panel, .status-card, .stat, .event-button, .button { transition: none !important; }
     }
+
+/* User identity is summarized on Home; retain the underlying element for SDK scripts. */
+.status-grid .status-card:has(#authProfileValue){display:none!important}
 </style>
   <link rel="stylesheet" href="./shared-theme.css">
 
@@ -1075,8 +1078,8 @@
   <main class="page">
 
     <section class="dashboard-heading">
-      <div><h1>SDK Testing</h1><p>Alchemer Digital · Auth0 · Supabase</p></div>
-      <span class="dashboard-environment">● &nbsp; Testing environment</span>
+      <div><h1>SDK Testing</h1></div>
+      
     </section>
 
     <section class="status-grid" aria-label="SDK status">

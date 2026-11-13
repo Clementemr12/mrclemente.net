@@ -98,3 +98,30 @@ html[data-theme="dark"] :is(.account-overview,.panel,.status-card,.stat,.home-ca
   font-size: 1.75rem !important;
   line-height: 1.2 !important;
 }
+
+/* Match the actual page heading blocks, not only the title font size. */
+.page > :is(.account-intro,.dashboard-heading,.heading) {
+  margin-top: 0 !important;
+  margin-bottom: 36px !important;
+}
+.page > :is(.account-intro,.dashboard-heading,.heading) h1 {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -.035em !important;
+  margin: 0 !important;
+}
+.page > :is(.account-intro,.dashboard-heading,.heading) p {
+  font-size: .88rem !important;
+  line-height: 1.45 !important;
+  margin: 8px 0 0 !important;
+  color: var(--muted) !important;
+}
+.page > :is(.account-intro,.dashboard-heading,.heading) > div {
+  min-width: 0;
+}
+@media (max-width: 620px) {
+  .page > :is(.account-intro,.dashboard-heading,.heading) {
+    margin-bottom: 28px !important;
+  }
+}

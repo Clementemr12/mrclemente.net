@@ -74,6 +74,11 @@ html[data-theme="dark"] .testing-page .event-button:nth-child(2) .event-symbol {
   background: rgba(166,116,208,.19);
   color: #d0a0f4;
 }
+html[data-theme="dark"] .testing-page .reset-button:not(:disabled):hover {
+  background: #5c303a;
+  border-color: #ff6777;
+  color: #fff;
+}
 html[data-theme="dark"] .testing-page .reset-button:not(:disabled):hover .event-symbol {
   background: #753540;
   color: #ffadb5;

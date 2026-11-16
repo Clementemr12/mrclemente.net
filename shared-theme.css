@@ -14,9 +14,9 @@
 html[data-theme="dark"] body {
   min-height: 100vh;
   background:
-    radial-gradient(ellipse 68% 52% at 88% 9%, rgba(202,104,53,.20), transparent 75%),
-    radial-gradient(ellipse 65% 58% at 8% 75%, rgba(65,129,165,.19), transparent 78%),
-    linear-gradient(135deg,#181d28 0%,#202634 55%,#2a2529 100%);
+    radial-gradient(ellipse 65% 72% at 15% 72%, rgba(30, 82, 126, .33), transparent 78%),
+    radial-gradient(ellipse 55% 62% at 92% 7%, rgba(115, 66, 53, .22), transparent 77%),
+    linear-gradient(125deg, #151c29 0%, #1c2535 52%, #211f2b 100%);
   background-attachment: fixed;
 }
 
@@ -35,6 +35,61 @@ html[data-theme="dark"] :is(.panel,.status-card,.stat) {
 }
 :is(.status-card,.stat):hover {
   box-shadow: 0 18px 40px rgba(25,38,68,.13);
+}
+
+/* Dashboard surfaces use the same luminous blue-gray treatment as the
+   homepage navigation cards. Keep consoles and embed editors darker for contrast. */
+html[data-theme="dark"] .testing-page :is(.panel,.status-card,.stat) {
+  background: linear-gradient(140deg, rgba(58,70,88,.92), rgba(48,58,75,.94)) !important;
+  border-color: rgba(156,176,203,.38) !important;
+  box-shadow: 0 16px 36px rgba(0,0,0,.14);
+}
+html[data-theme="dark"] .testing-page :is(.status-card,.stat) {
+  background: linear-gradient(135deg, rgba(65,79,99,.92), rgba(53,66,84,.94)) !important;
+}
+html[data-theme="dark"] .testing-page :is(.panel,.status-card,.stat):hover {
+  border-color: rgba(171,195,224,.55) !important;
+  box-shadow: 0 19px 42px rgba(0,0,0,.18);
+}
+html[data-theme="dark"] .testing-page .panel-heading {
+  background: rgba(104,120,146,.26);
+  border-bottom-color: rgba(158,181,210,.22);
+}
+html[data-theme="dark"] .testing-page :is(.status-label,.stat-label,.status-detail) {
+  color: #c3cede;
+}
+html[data-theme="dark"] .testing-page .event-button {
+  background: #414d60;
+  border-color: #60718a;
+}
+html[data-theme="dark"] .testing-page .event-button:not(.reset-button):hover:not(:disabled) {
+  background: #4d5c72;
+  border-color: #83b4df;
+}
+html[data-theme="dark"] .testing-page .event-symbol {
+  background: rgba(104,162,218,.18);
+  color: #8bc8fb;
+}
+html[data-theme="dark"] .testing-page .event-button:nth-child(2) .event-symbol {
+  background: rgba(166,116,208,.19);
+  color: #d0a0f4;
+}
+html[data-theme="dark"] .testing-page .reset-button:not(:disabled):hover .event-symbol {
+  background: #753540;
+  color: #ffadb5;
+}
+html[data-theme="dark"] .testing-page .button:not(:disabled) {
+  background: #46546a;
+  border-color: #657791;
+  color: #f4f6fb;
+}
+html[data-theme="dark"] .testing-page .button:hover:not(:disabled) {
+  background: #52637c;
+  border-color: #8caccd;
+}
+html[data-theme="dark"] .testing-page :is(.event-button,.button):focus-visible {
+  outline: 2px solid #8ec7f3;
+  outline-offset: 3px;
 }
 
 /* The sidebar determines the desktop content area on every page. */

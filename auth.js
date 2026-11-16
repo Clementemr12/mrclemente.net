@@ -16,98 +16,21 @@
   const status = $("authStatusText");
   const login = $("loginButton"), signup = $("signupButton"), logout = $("logoutButton");
   function render(user) {
-    if (status) status.textContent = user ? (user.email || user.name || "Signed in") : "Anonymous";
-    const indicator = $("authStatus");
-    if (indicator) indicator.dataset.authenticated = user ? "true" : "false";
-    if (login) login.hidden = !!user;
-    if (signup) signup.hidden = !!user;
-    if (logout) logout.hidden = !user;
-    // Populate homepage overview only when those elements are present.
-    const set = (id, value) => { const el = $(id); if (el) el.textContent = value; };
     const signedIn = !!user;
-    const provider = user?.sub?.split("|")[0] || null;
-    const providerNames = {auth0:"Auth0 database","google-oauth2":"Google",github:"GitHub",windowslive:"Microsoft",apple:"Apple"};
-    const homeState = $("homeAuthState");
-    if (homeState) homeState.dataset.authenticated = String(signedIn);
-    set("homeAuthState", signedIn ? "Signed in" : "Not signed in");
-    set("homeUserName", signedIn ? (user.name || user.nickname || user.email || "Signed-in user") : "Not signed in");
-    set("homeUserEmail", signedIn ? (user.email || "No email provided") : "Log in to see your account");
-    set("homeSession", signedIn ? "Active" : "Anonymous");
-    set("homeProvider", signedIn ? (providerNames[provider] || provider || "Unknown") : "—");
-    set("homeVerified", signedIn ? (user.email_verified === true ? "Yes" : user.email_verified === false ? "No" : "Unknown") : "—");
-    set("homeUserId", signedIn ? (user.sub || "—") : "—");
-    set("homeAccountStatus", signedIn ? "Active session" : "Anonymous");
-
-  }
-  async function loadTotalUsers(user) {
-    const el = $("homeTotalUsers");
-    if (!el) return;
-    if (!user) { el.textContent = "Sign in required"; return; }
-    el.textContent = "Loading…";
-    try {
-      const token = await client.getTokenSilently({ authorizationParams: { audience: config.authorizationParams.audience } });
-      const response = await fetch("https://oaokqzaietaaxjreobqb.supabase.co/functions/v1/Auth0-Overview", {
-        method: "POST",
-        headers: { "Authorization": "Bearer " + token, "Content-Type": "application/json" },
-        body: "{}"
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Unable to retrieve user count");
-      el.textContent = Number(data.total_users).toLocaleString();
-      const metric = (id, value) => {
-        const node = $(id);
-        if (node) node.textContent = Number.isInteger(value) ? value.toLocaleString() : "—";
-      };
-      metric("homeVerifiedCount", data.verified_users);
-      const formatDate = value => {
-        if (!value) return "—";
-        const date = new Date(value);
-        return Number.isNaN(date.getTime()) ? "—" : date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-      };
-      const details = data.current_user || {};
-      const member = $("homeMemberSince"), last = $("homeLastLogin");
-      if (member) member.textContent = formatDate(details.created_at);
-      if (last) last.textContent = formatDate(details.last_login);
-      const updated = $("homeProfileUpdated"), mfa = $("homeMfa"), account = $("homeAccountStatus");
-      if (updated) updated.textContent = formatDate(details.updated_at || user.updated_at);
-      if (mfa) mfa.textContent = Array.isArray(details.multifactor) && details.multifactor.length ? "Yes" : "No enrolled factors";
-      if (account) account.textContent = details.blocked ? "Blocked account" : "Active session";
-      const verification = $("homeVerified");
-
-      const providerNames = { auth0: "Auth0 database", google: "Google", github: "GitHub", windowslive: "Microsoft", apple: "Apple" };
-      const providers = $("homeProviders");
-      if (providers) {
-        providers.replaceChildren();
-        const entries = Array.isArray(data.providers) ? data.providers : [];
-        if (!entries.length) providers.textContent = data.stats_complete ? "No accounts" : "Not available";
-        for (const entry of entries) {
-          const row = document.createElement("div");
-          row.className = "auth0-data-row";
-          const label = document.createElement("span");
-          label.textContent = providerNames[entry.provider] || entry.provider || "Other";
-          const count = document.createElement("strong");
-          count.textContent = String(entry.count);
-          row.append(label, count);
-          providers.append(row);
-        }
-      }
-
-    } catch (error) {
-      console.error("Auth0 total users:", error);
-      el.textContent = "Unavailable";
-      el.title = error.message || "Unable to load total users";
+    if (status) status.textContent = signedIn ? (user.email || user.name || "Signed in") : "Anonymous";
+    const indicator = $("authStatus");
+    if (indicator) {
+      indicator.dataset.authenticated = String(signedIn);
+      indicator.classList.toggle("authenticated", signedIn);
     }
+    if (login) login.hidden = signedIn;
+    if (signup) signup.hidden = signedIn;
+    if (logout) logout.hidden = !signedIn;
   }
   function fail(error) {
     console.error("Auth0 authentication error:", error);
     render(null);
     if (status) status.textContent = "Authentication unavailable";
-    const state = $("homeAuthState");
-    if (state) state.textContent = "Connection error";
-    const name = $("homeUserName");
-    if (name) name.textContent = "Unable to load account";
-    const email = $("homeUserEmail");
-    if (email) email.textContent = error?.message || "Try refreshing or signing in again";
   }
   async function start() {
     if (!window.auth0?.createAuth0Client) {
@@ -142,7 +65,6 @@
     }
     const user = (await client.isAuthenticated()) ? await client.getUser() : null;
     render(user);
-    if (user) void loadTotalUsers(user);
   }
   async function ensureClient() {
     if (client) return client;

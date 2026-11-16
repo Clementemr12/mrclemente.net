@@ -37,42 +37,41 @@ html[data-theme="dark"] :is(.panel,.status-card,.stat) {
   box-shadow: 0 18px 40px rgba(25,38,68,.13);
 }
 
-/* Dashboard surfaces use the same luminous blue-gray treatment as the
-   homepage navigation cards. Keep consoles and embed editors darker for contrast. */
+/* SDK and Survey surfaces mirror the muted translucent cards on the
+   homepage. Keep editor and console surfaces dark for legibility. */
 html[data-theme="dark"] .testing-page :is(.panel,.status-card,.stat) {
-  background: linear-gradient(140deg, rgba(58,70,88,.92), rgba(48,58,75,.94)) !important;
-  border-color: rgba(156,176,203,.38) !important;
-  box-shadow: 0 16px 36px rgba(0,0,0,.14);
-}
-html[data-theme="dark"] .testing-page :is(.status-card,.stat) {
-  background: linear-gradient(135deg, rgba(65,79,99,.92), rgba(53,66,84,.94)) !important;
+  background: linear-gradient(130deg, rgba(53,63,78,.60), rgba(49,55,68,.53)) !important;
+  border-color: rgba(165,177,201,.39) !important;
+  box-shadow: 0 16px 35px rgba(0,0,0,.09);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 html[data-theme="dark"] .testing-page :is(.panel,.status-card,.stat):hover {
-  border-color: rgba(171,195,224,.55) !important;
-  box-shadow: 0 19px 42px rgba(0,0,0,.18);
+  border-color: rgba(176,192,219,.54) !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,.14);
 }
 html[data-theme="dark"] .testing-page .panel-heading {
-  background: rgba(104,120,146,.26);
-  border-bottom-color: rgba(158,181,210,.22);
+  background: rgba(18,24,35,.13);
+  border-bottom-color: rgba(165,177,201,.17);
 }
 html[data-theme="dark"] .testing-page :is(.status-label,.stat-label,.status-detail) {
-  color: #c3cede;
+  color: #b6c2d2;
 }
 html[data-theme="dark"] .testing-page .event-button {
-  background: #414d60;
-  border-color: #60718a;
+  background: rgba(54,63,78,.82);
+  border-color: rgba(165,177,201,.29);
 }
 html[data-theme="dark"] .testing-page .event-button:not(.reset-button):hover:not(:disabled) {
-  background: #4d5c72;
-  border-color: #83b4df;
+  background: #414c5e;
+  border-color: rgba(131,180,223,.65);
 }
 html[data-theme="dark"] .testing-page .event-symbol {
-  background: rgba(104,162,218,.18);
-  color: #8bc8fb;
+  background: rgba(71,137,199,.22);
+  color: #71bbf7;
 }
 html[data-theme="dark"] .testing-page .event-button:nth-child(2):not(.reset-button) .event-symbol {
-  background: rgba(166,116,208,.19);
-  color: #d0a0f4;
+  background: rgba(152,101,195,.23);
+  color: #d18bf8;
 }
 html[data-theme="dark"] .testing-page .reset-button:not(:disabled):hover {
   background: #5c303a;
@@ -84,16 +83,16 @@ html[data-theme="dark"] .testing-page .reset-button:not(:disabled):hover .event-
   color: #ffadb5;
 }
 html[data-theme="dark"] .testing-page .button:not(:disabled) {
-  background: #46546a;
-  border-color: #657791;
+  background: #363f4e;
+  border-color: rgba(165,177,201,.32);
   color: #f4f6fb;
 }
 html[data-theme="dark"] .testing-page .button:hover:not(:disabled) {
-  background: #52637c;
-  border-color: #8caccd;
+  background: #414c5e;
+  border-color: rgba(176,192,219,.56);
 }
 html[data-theme="dark"] .testing-page :is(.event-button,.button):focus-visible {
-  outline: 2px solid #8ec7f3;
+  outline: 2px solid #8ebde7;
   outline-offset: 3px;
 }
 

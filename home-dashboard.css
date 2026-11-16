@@ -1,99 +1,109 @@
-/* Home landing page: intentionally open and free of account dashboard panels.
-   Shared navigation, authentication and dark-mode colors live in site-base.css. */
+/* Home landing page. The Lucario hero and the bottom waves intentionally
+   echo the original homepage design, without bringing back the Auth0 dashboard. */
 
-.page.account-home {
+html[data-theme="dark"] body.home-page {
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse 65% 72% at 15% 72%, rgba(30, 82, 126, .33), transparent 78%),
+    radial-gradient(ellipse 55% 62% at 92% 7%, rgba(115, 66, 53, .22), transparent 77%),
+    linear-gradient(125deg, #151c29 0%, #1c2535 52%, #211f2b 100%);
+  background-attachment: fixed;
+}
+
+/* Decorative waves span the entire viewport, including behind the sidebar. */
+.home-waves {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 0;
+  height: clamp(170px, 20vw, 240px);
+  pointer-events: none;
+  overflow: hidden;
+}
+.home-waves svg { display: block; width: 100%; height: 100%; }
+
+body.home-page .page.account-home {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
   min-height: 100svh;
-  padding-top: 110px;
-  padding-bottom: 110px;
+  padding-top: 105px;
+  padding-bottom: 150px;
 }
 
 .home-landing {
   width: 100%;
-  max-width: 940px;
+  max-width: 1064px;
   margin: 0 auto;
 }
 
 .home-hero {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 73px;
 }
 
-.home-kicker {
-  display: inline-block;
-  margin-bottom: 20px;
-  color: #f0a46c;
-  font-size: .72rem;
-  font-weight: 750;
-  letter-spacing: .19em;
+.home-hero-logo {
+  display: block;
+  width: 102px;
+  height: 102px;
+  margin: 0 auto 18px;
+  border-radius: 19px;
+  object-fit: contain;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, .18);
 }
 
 .home-hero h1 {
   margin: 0;
   color: #f6f7fb;
-  font-size: clamp(2.7rem, 5vw, 4rem);
-  line-height: 1.1;
+  font-size: clamp(2.75rem, 4.4vw, 4rem);
+  line-height: 1.13;
   font-weight: 750;
   letter-spacing: -.055em;
 }
 
 .home-hero p {
-  max-width: 540px;
-  margin: 18px auto 0;
-  color: #aeb7c6;
-  font-size: clamp(.95rem, 1.45vw, 1.06rem);
-  line-height: 1.65;
+  max-width: 760px;
+  margin: 14px auto 0;
+  color: #c6cedb;
+  font-size: clamp(1rem, 1.4vw, 1.42rem);
+  line-height: 1.5;
 }
 
 .home-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: 38px;
 }
 
 .home-action {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-height: 218px;
-  padding: 27px 29px 28px;
-  overflow: hidden;
-  border: 1px solid rgba(154, 168, 192, .19);
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(44, 50, 63, .84), rgba(33, 38, 50, .82));
-  box-shadow: 0 18px 45px rgba(0, 0, 0, .12);
-  color: #f2f5fa;
+  display: grid;
+  grid-template-columns: 74px minmax(0, 1fr) 28px;
+  align-items: center;
+  column-gap: 30px;
+  min-height: 154px;
+  padding: 25px 32px 25px 35px;
+  border: 1px solid rgba(165, 177, 201, .39);
+  border-radius: 21px;
+  background: linear-gradient(130deg, rgba(53, 63, 78, .60), rgba(49, 55, 68, .53));
+  box-shadow: 0 16px 35px rgba(0, 0, 0, .09);
+  backdrop-filter: blur(10px);
+  color: #f5f7fb;
   text-decoration: none;
   transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
 }
 
-.home-action::after {
-  content: "";
-  position: absolute;
-  right: -76px;
-  bottom: -112px;
-  width: 230px;
-  height: 230px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(229, 138, 78, .12), transparent 68%);
-  pointer-events: none;
-}
-
-.home-action:nth-child(2)::after {
-  background: radial-gradient(circle, rgba(108, 162, 201, .12), transparent 68%);
-}
-
 .home-action:hover {
   transform: translateY(-4px);
-  border-color: rgba(232, 150, 96, .58);
-  box-shadow: 0 22px 52px rgba(0, 0, 0, .22);
+  border-color: rgba(176, 192, 219, .68);
+  background: linear-gradient(130deg, rgba(62, 74, 91, .77), rgba(54, 60, 76, .73));
+  box-shadow: 0 22px 44px rgba(0, 0, 0, .17);
 }
 
 .home-action:focus-visible {
-  outline: 2px solid #f0a46c;
+  outline: 2px solid #8ebde7;
   outline-offset: 4px;
 }
 
@@ -101,107 +111,99 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 25px;
-  border: 1px solid rgba(240, 164, 108, .25);
-  border-radius: 13px;
-  background: rgba(232, 137, 69, .12);
-  color: #f0a46c;
+  width: 74px;
+  height: 74px;
+  border-radius: 15px;
+  background: rgba(71, 137, 199, .22);
+  color: #71bbf7;
 }
 
 .home-action:nth-child(2) .home-action-icon {
-  border-color: rgba(133, 189, 224, .24);
-  background: rgba(105, 165, 205, .12);
-  color: #9bc9e9;
+  background: rgba(152, 101, 195, .23);
+  color: #d18bf8;
 }
 
-.home-action-icon svg {
-  width: 24px;
-  height: 24px;
-}
+.home-action-icon svg { width: 37px; height: 37px; }
 
 .home-action-copy {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-width: 340px;
+  gap: 6px;
+  min-width: 0;
 }
 
 .home-action-copy strong {
-  font-size: 1.16rem;
-  font-weight: 730;
-  letter-spacing: -.025em;
+  font-size: clamp(1.17rem, 1.55vw, 1.58rem);
+  font-weight: 740;
+  line-height: 1.24;
+  letter-spacing: -.03em;
 }
 
 .home-action-copy > span {
-  color: #aeb8c7;
-  font-size: .88rem;
-  line-height: 1.6;
+  color: #c7d0dd;
+  font-size: clamp(.85rem, 1vw, 1.04rem);
+  line-height: 1.5;
 }
 
 .home-action-arrow {
-  position: absolute;
-  right: 27px;
-  top: 30px;
-  color: #aeb8c7;
-  font-size: 1.3rem;
+  color: #f2f4f8;
+  font-size: 1.9rem;
+  font-weight: 400;
   line-height: 1;
-  transition: color .18s ease, transform .18s ease;
+  justify-self: end;
+  transition: transform .18s ease;
 }
 
-.home-action:hover .home-action-arrow {
-  color: #f0a46c;
-  transform: translate(2px, -2px);
-}
+.home-action:hover .home-action-arrow { transform: translateX(4px); }
 
-/* The status indicator reflects Auth0 state, not the device's theme. */
-body.home-page .global-auth .anonymous-pill .dot {
-  background: #e5a04c;
-}
+/* Orange for anonymous; green for authenticated. */
+body.home-page .global-auth .anonymous-pill .dot { background: #e5a04c; }
+body.home-page .global-auth .anonymous-pill.authenticated .dot { background: #58d69a; }
 
-body.home-page .global-auth .anonymous-pill.authenticated .dot {
-  background: #58d69a;
+@media (max-width: 1200px) and (min-width: 901px) {
+  .home-actions { gap: 20px; }
+  .home-action { grid-template-columns: 58px minmax(0, 1fr) 20px; column-gap: 17px; padding: 23px; }
+  .home-action-icon { width: 58px; height: 58px; }
+  .home-action-icon svg { width: 30px; height: 30px; }
 }
 
 @media (max-width: 900px) {
-  .page.account-home {
+  body.home-page .page.account-home {
     min-height: calc(100svh - 112px);
-    padding: 70px 22px 85px;
+    padding: 70px 22px 110px;
   }
-
   body.home-page .header-inner {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "identity" "navigation";
   }
-
-  body.home-page .brand {
-    justify-content: center;
-    width: 100%;
+  body.home-page .brand { justify-content: center; width: 100%; }
+  .home-landing { max-width: 760px; }
+  .home-actions { gap: 16px; }
+  .home-action {
+    grid-template-columns: 54px minmax(0, 1fr) 20px;
+    column-gap: 16px;
+    padding: 21px;
+    min-height: 140px;
   }
-
-  .home-landing { max-width: 740px; }
+  .home-action-icon { width: 54px; height: 54px; }
+  .home-action-icon svg { width: 28px; height: 28px; }
+  .home-action-arrow { font-size: 1.45rem; }
 }
 
 @media (max-width: 620px) {
-  .page.account-home {
+  body.home-page .page.account-home {
     min-height: calc(100svh - 100px);
-    padding: 55px 18px 75px;
+    padding: 54px 18px 105px;
   }
-
-  .home-hero { margin-bottom: 36px; }
-  .home-kicker { font-size: .65rem; margin-bottom: 16px; }
-  .home-hero h1 { font-size: clamp(2.3rem, 10vw, 3rem); }
-  .home-hero p { font-size: .94rem; line-height: 1.6; }
-
+  .home-hero { margin-bottom: 37px; }
+  .home-hero-logo { width: 84px; height: 84px; margin-bottom: 20px; border-radius: 16px; }
+  .home-hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .home-hero p { font-size: .96rem; line-height: 1.6; margin-top: 13px; }
   .home-actions { grid-template-columns: 1fr; gap: 14px; }
-  .home-action {
-    min-height: 0;
-    padding: 22px 24px;
-    border-radius: 16px;
-  }
-  .home-action-icon { margin-bottom: 16px; width: 44px; height: 44px; }
-  .home-action-arrow { top: 24px; right: 23px; }
+  .home-action { min-height: 120px; border-radius: 16px; padding: 20px; }
+  .home-action-copy strong { font-size: 1.18rem; }
+  .home-action-copy > span { font-size: .87rem; }
+  .home-waves { height: 165px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

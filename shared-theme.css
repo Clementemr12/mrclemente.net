@@ -70,7 +70,7 @@ html[data-theme="dark"] .testing-page .event-symbol {
   background: rgba(104,162,218,.18);
   color: #8bc8fb;
 }
-html[data-theme="dark"] .testing-page .event-button:nth-child(2) .event-symbol {
+html[data-theme="dark"] .testing-page .event-button:nth-child(2):not(.reset-button) .event-symbol {
   background: rgba(166,116,208,.19);
   color: #d0a0f4;
 }

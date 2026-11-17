@@ -73,13 +73,7 @@
     .button-secondary { color: #39445c; background: #fff; border-color: var(--line); }
     .button-secondary:hover { background: #f8f9fc; border-color: #cbd3e2; }
 
-
-
     .page { padding: 42px 0 60px; }
-
-
-
-
 
     h1, h2, h3, p { margin-top: 0; }
     h1 {
@@ -88,8 +82,6 @@
       line-height: 1.1;
       letter-spacing: -0.055em;
     }
-
-
 
     .status-grid {
       display: grid;
@@ -196,15 +188,6 @@
     .event-message { color: var(--muted); overflow-wrap: anywhere; }
     .empty-state { padding: 18px 0 4px; color: var(--muted); font-size: 0.88rem; }
 
-
-
-
-
-
-
-
-
-
     .toast {
       position: fixed;
       left: 22px;
@@ -261,8 +244,6 @@
     .brand-name.top-link:hover,
     .brand .top-link:hover { color: #000000; }
 
-
-
     .header-inner { min-height: 64px; }
     .page { padding-top: 34px; }
     .brand-caption, .eyebrow, .hero-note, .section-kicker,
@@ -291,8 +272,6 @@
     .event-button { min-height: 64px; padding: 12px; border-radius: 10px; }
     .event-button:hover { border-color: #cbd2dc; background: #fafbfc; }
     .button { border-radius: 9px; }
-
-
 
     .history-panel { margin-top: 18px; }
     .toast { left: 18px; bottom: 18px; box-shadow: 0 8px 24px rgba(20, 28, 48, 0.12); }
@@ -373,8 +352,6 @@
     .event-message { color: #d0d7e2; }
     .empty-state { color: #a4afc0; }
 
-
-
     .toast { background: #363e49; border-color: #566171; color: #f3f6fa; }
     .toast span { color: #c3cedd; }
     @media (min-width: 1080px) {
@@ -413,8 +390,6 @@
     .brand .top-link:hover { background: #343943; }
     .page { max-width: 1320px; padding: 30px 52px 70px; }
 
-
-
     .dashboard-heading { margin-bottom: 36px; }
 
 
@@ -446,8 +421,6 @@
     @media (max-width: 620px) {
       .page { padding: 20px 16px 40px; }
 
-
-
       .status-grid { gap: 12px; margin-bottom: 26px; }
       .panel { padding: 0 16px 18px; margin-bottom: 24px; }
       .panel-heading { margin: 0 -16px 18px; padding: 15px 16px; }
@@ -467,8 +440,6 @@
       .header-inner { padding-left: 20px; padding-right: 20px; }
     }
 
-
-
     .page { padding-top: 105px; }
     @media (max-width: 900px) {
 
@@ -481,12 +452,6 @@
       .sidebar-brand { padding-right: 140px; }
       .page { padding-top: 26px; }
     }
-
-
-
-
-    
-
 
     /* Deeper panel surfaces and stronger elevation */
     .panel {
@@ -555,17 +520,12 @@
     .status-value .tone-bad::before { background: #f17b88; }
     .status-icon { opacity: .55; }
 
-
-
     .history-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
     .history-controls #historySearch { flex: 2 1 210px; min-height: 38px; }
     .history-controls #historyFilter { flex: 1 1 150px; min-height: 38px; }
     .history-check { display: flex; gap: 7px; align-items: center; color: #b2bdcb; font-size: .8rem; }
     .history-controls .button { min-height: 38px; }
     .event-entry[hidden] { display: none !important; }
-
-
-
 
     .sidebar-toggle { background: transparent; border: 1px solid #3d444f; border-radius: 8px; padding: 9px 12px; color: #abb6c4; text-align: left; cursor: pointer; }
     .sidebar-toggle:hover { background: #30353d; color: #fff; }
@@ -582,10 +542,8 @@
       body.sidebar-collapsed .brand .top-link::first-letter { font-size: 1.2rem; }
       body.sidebar-collapsed .sidebar-toggle { text-align: center; }
     }
-    
 
-
-    /* Compact controls, unified headers and unobstructed top account bar */
+    /* Compact controls and unified panel headers */
     .panel-heading { background: #343a44; border-bottom-color: #454c58; }
     .button:not(.event-button) { padding: 7px 11px; font-size: .78rem; min-height: 34px; width: auto; }
     .event-button { min-height: 58px; padding: 10px 12px; }
@@ -617,78 +575,11 @@
     .event-button:hover, .button-secondary:hover { background: #393f49; border-color: #687381; }
     .event-symbol { background: #353b45; }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-    /* Compact sidebar theme switch and white light-mode headers */
+    /* Compact sidebar spacing */
     .header-inner { gap: 18px; }
     .brand { margin-bottom: 10px; }
 
-
-
-
-
-
-
-
-
-    
-
-    
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    /* Mobile-only two-row header: branding/account, then navigation/theme */
+    /* Mobile header: brand and navigation */
     @media (max-width: 900px) {
       .site-header { position: relative; inset: auto; width: 100%; height: auto; background: transparent; border: 0; }
       .header-inner {
@@ -708,9 +599,6 @@
       .brand .top-link { padding: 9px 10px; font-size: .8rem; white-space: nowrap; }
       .sidebar-toggle { display: none !important; }
 
-
-
-
       .page, body.sidebar-collapsed .page { margin-left: 0; padding: 22px 16px 40px; }
       .page > .heading { margin-top: 0; }
     }
@@ -724,14 +612,9 @@
       .brand .top-link { padding: 8px 7px; font-size: .75rem; }
     }
 
-    
-
-
-    /* Keep mobile authentication buttons above the header and give them reliable tap targets */
+    /* Keep mobile header behind the shared account controls */
     @media (max-width: 900px) {
       .site-header { z-index: 1; }
-
-
 
       .header-inner { position: relative; z-index: 0; }
       .sidebar-brand { max-width: calc(100% - 190px); }
@@ -741,19 +624,6 @@
 
       .sidebar-brand { max-width: calc(100% - 174px); }
     }
-
-    /* Truncate authenticated mobile identity without overlapping the app brand */
-    
-
-    
-
-
-    /* Mobile auth buttons: restore compact visual size while keeping tap area accessible */
-    
-
-    
-
-
     /* Unified floating section headings and elevated clickable controls */
     .panel { overflow: visible; padding-top: 22px; }
 
@@ -769,18 +639,13 @@
     }
     .event-button:active:not(:disabled), .button:active:not(:disabled) { transform: translateY(0); }
 
-
-
-
-
-
     @media (max-width: 620px) {
       .panel { padding-top: 18px; }
       .panel-heading { margin-bottom: 14px; }
 
     }
 
-    /* Refined depth and atmospheric lighting, without changing layout or theme colors */
+    /* Subtle depth and atmospheric lighting */
     body {
       background-image:
         radial-gradient(ellipse 54rem 35rem at 95% -8%, rgba(111, 149, 205, .105), transparent 72%),
@@ -802,9 +667,11 @@
     }
     .event-button:focus-visible, .button:focus-visible {
       outline-offset: 3px;
-    }.status-dot {
+    }
+    .status-dot {
       box-shadow: 0 0 0 3px rgba(245,164,77,.10), 0 0 9px rgba(245,164,77,.2);
-    }.status-pill[data-state="ready"] .status-dot {
+    }
+    .status-pill[data-state="ready"] .status-dot {
       box-shadow: 0 0 0 3px rgba(105,212,162,.1), 0 0 9px rgba(105,212,162,.2);
     }
     @media (prefers-reduced-motion: reduce) {

@@ -47,20 +47,6 @@
     .brand-name { font-weight: 750; letter-spacing: -0.025em; font-size: 0.98rem; }
 
 
-    .anonymous-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 2px;
-      border: 1px solid transparent;
-      border-radius: 999px;
-      color: #45516a;
-      background: transparent;
-      font-size: 0.86rem;
-      white-space: nowrap;
-    }
-
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: #8b95a8; }
     .button {
       display: inline-flex;
       align-items: center;
@@ -240,7 +226,6 @@
     .toast strong { display: block; margin-bottom: 3px; }
     .toast span { color: #65718a; font-size: 0.86rem; }
 
-    .anonymous-pill.authenticated .dot { background: var(--green); }
     .profile-value { overflow-wrap: anywhere; }
 
     @media (max-width: 900px) {
@@ -254,7 +239,6 @@
       .header-inner, .page { width: min(100% - 28px, 1120px); }
       .header-inner { min-height: 68px; gap: 10px; }
 
-      .anonymous-pill { font-size: 0.76rem; gap: 6px; }
 
       .toast { left: 14px; bottom: 14px; width: min(360px, calc(100% - 28px)); }
       .page { padding-top: 30px; }
@@ -276,8 +260,8 @@
     .brand .top-link { color: #172033; }
     .brand-name.top-link:hover,
     .brand .top-link:hover { color: #000000; }
-    .anonymous-pill { color: #172033; }
-    .dot { background: #f0a36c; }
+
+
 
     .header-inner { min-height: 64px; }
     .page { padding-top: 34px; }
@@ -316,7 +300,6 @@
       .header-inner { align-items: flex-start; flex-direction: column; gap: 10px; padding: 14px 0; }
       .brand { width: 100%; flex-wrap: wrap; gap: 8px 16px; }
 
-      .anonymous-pill { min-width: 0; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 
     }
     @media (max-width: 560px) {
@@ -328,7 +311,6 @@
       .brand { gap: 6px 12px; }
       .brand-name.top-link, .brand .top-link { font-size: 0.84rem; }
 
-      .anonymous-pill { flex: 1 1 100%; padding: 2px 0; font-size: 0.8rem; }
 
       .status-grid { grid-template-columns: minmax(0, 1fr); }
     }
@@ -347,9 +329,6 @@
     .brand .top-link:hover, .brand-name.top-link:hover { background: #3a404d; color: #fff; text-decoration: none; }
     .brand .active-link { background: #414956; color: #fff; border-left: 3px solid #53baf1; }
 
-
-
-    .anonymous-pill { color: #e5e9f1; width: 100%; overflow-wrap: anywhere; white-space: normal; font-size: .78rem; }
     .page { width: auto; max-width: 1440px; margin: 0 0 0 242px; padding: 38px 32px 50px; }
     .dashboard-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 27px; }
 
@@ -408,8 +387,6 @@
       .sidebar-brand { border: 0; padding: 0; }
       .brand { display: flex; width: auto; gap: 5px; }
 
-
-      .anonymous-pill { width: auto; }
       .page { width: auto; margin: 0; padding: 28px 20px 40px; }
       .dashboard-heading { align-items: flex-start; }
     }
@@ -491,37 +468,25 @@
     }
 
 
-    .global-auth {
-      position: fixed;
-      top: 24px;
-      right: 32px;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .global-auth [hidden] { display: none !important; }
-    .global-auth .button { flex-shrink: 0; }
+
     .page { padding-top: 105px; }
     @media (max-width: 900px) {
-      .global-auth { top: 18px; right: 20px; }
+
       .sidebar-brand { padding-right: 175px; }
       .page { padding-top: 48px; }
     }
     @media (max-width: 620px) {
-      .global-auth { top: 16px; right: 14px; gap: 6px; }
-      .global-auth .button { padding: 8px 10px; font-size: .75rem; }
+
+
       .sidebar-brand { padding-right: 140px; }
       .page { padding-top: 26px; }
     }
 
-    .global-auth .anonymous-pill { display: inline-flex; align-items: center; gap: 8px; color: #c9d1dd; font-size: .82rem; max-width: 280px; }
-    .global-auth .anonymous-pill .dot { flex-shrink: 0; width: 8px; height: 8px; background: #e5a04c; }
-    .global-auth .anonymous-pill.authenticated .dot { background: #58d69a; }
-    .global-auth #authStatusText { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    @media (max-width: 620px) {
-      .global-auth .anonymous-pill { max-width: 120px; font-size: .73rem; }
-    }
+
+
+
+    
+
 
     /* Deeper panel surfaces and stronger elevation */
     .panel {
@@ -617,16 +582,15 @@
       body.sidebar-collapsed .brand .top-link::first-letter { font-size: 1.2rem; }
       body.sidebar-collapsed .sidebar-toggle { text-align: center; }
     }
-    @media (max-width: 620px) {
+    
 
- }
 
     /* Compact controls, unified headers and unobstructed top account bar */
     .panel-heading { background: #343a44; border-bottom-color: #454c58; }
     .button:not(.event-button) { padding: 7px 11px; font-size: .78rem; min-height: 34px; width: auto; }
     .event-button { min-height: 58px; padding: 10px 12px; }
     .event-symbol { width: 36px; height: 36px; }
-    .global-auth { position: fixed; top: 18px; right: 28px; }
+
     .page { box-sizing: border-box; max-width: none; width: auto; margin-left: 242px; padding: 112px 52px 70px; }
     .page > .dashboard-heading, .page > .status-grid, .page > .main-grid,
     .page > .panel, .page > .footer { width: 100%; max-width: 1320px; margin-left: auto; margin-right: auto; }
@@ -639,11 +603,11 @@
     }
     @media (max-width: 900px) {
       .page { margin-left: 0; padding: 90px 30px 50px; }
-      .global-auth { top: 16px; right: 20px; }
+
     }
     @media (max-width: 620px) {
       .page { padding: 85px 16px 40px; }
-      .global-auth { top: 14px; right: 14px; }
+
       .button:not(.event-button) { padding: 7px 10px; }
     }
 
@@ -656,7 +620,6 @@
 
 
 
-    .global-auth { gap: 9px; }
 
 
 
@@ -687,11 +650,8 @@
 
 
 
+    
 
-
-
-    @media (max-width: 620px) {
- }
 
     /* Compact sidebar theme switch and white light-mode headers */
     .header-inner { gap: 18px; }
@@ -705,14 +665,9 @@
 
 
 
-    @media (min-width: 901px) {
+    
 
-
-    }
-    @media (max-width: 620px) {
-
-
-    }
+    
 
 
 
@@ -720,8 +675,9 @@
 
 
 
-    @media (min-width: 901px) {
- }
+
+    
+
 
 
 
@@ -752,18 +708,9 @@
       .brand .top-link { padding: 9px 10px; font-size: .8rem; white-space: nowrap; }
       .sidebar-toggle { display: none !important; }
 
-      .global-auth {
-        position: absolute; top: 16px; right: 16px; left: auto; z-index: 5;
-        display: flex; align-items: center; gap: 5px; max-width: 170px;
-      }
-      .global-auth .anonymous-pill, .global-auth .auth-indicator {
-        min-width: 0; max-width: 94px; overflow: hidden; white-space: nowrap;
-        text-overflow: ellipsis; font-size: .72rem;
-      }
-      .global-auth #authStatusText { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-      .global-auth .button, .global-auth .button:not(.event-button) {
-        padding: 6px 8px; min-height: 32px; font-size: .72rem; flex-shrink: 0;
-      }
+
+
+
       .page, body.sidebar-collapsed .page { margin-left: 0; padding: 22px 16px 40px; }
       .page > .heading { margin-top: 0; }
     }
@@ -772,81 +719,40 @@
       .sidebar-brand img { width: 36px; height: 36px; }
       .sidebar-brand strong { font-size: .78rem; }
       .sidebar-brand small { font-size: .63rem; }
-      .global-auth { max-width: 145px; gap: 3px; }
-      .global-auth .anonymous-pill, .global-auth .auth-indicator { max-width: 68px; }
+
+
       .brand .top-link { padding: 8px 7px; font-size: .75rem; }
     }
 
-    @media (max-width: 900px) {
-      .global-auth .anonymous-pill:not(.authenticated) #authStatusText { display: none; }
-      .global-auth .anonymous-pill:not(.authenticated) { gap: 0; }
+    
 
-
-    }
 
     /* Keep mobile authentication buttons above the header and give them reliable tap targets */
     @media (max-width: 900px) {
       .site-header { z-index: 1; }
-      .global-auth {
-        position: absolute; top: 12px; right: 12px; z-index: 110;
-        max-width: none; width: auto; gap: 5px;
-        pointer-events: auto;
-      }
-      .global-auth .button, .global-auth .button:not(.event-button) {
-        position: relative; z-index: 1; min-height: 40px;
-        padding: 9px 11px; font-size: .75rem; touch-action: manipulation;
-      }
-      .global-auth .anonymous-pill { flex: 0 0 auto; max-width: none; }
+
+
+
       .header-inner { position: relative; z-index: 0; }
       .sidebar-brand { max-width: calc(100% - 190px); }
     }
     @media (max-width: 390px) {
-      .global-auth { right: 8px; gap: 3px; }
-      .global-auth .button, .global-auth .button:not(.event-button) { padding: 9px 8px; }
+
+
       .sidebar-brand { max-width: calc(100% - 174px); }
     }
 
     /* Truncate authenticated mobile identity without overlapping the app brand */
-    @media (max-width: 900px) {
-      .global-auth:has(.anonymous-pill.authenticated) {
-        max-width: min(52vw, 225px);
-        min-width: 0;
-      }
-      .global-auth .anonymous-pill.authenticated {
-        display: flex; align-items: center; flex: 1 1 auto;
-        min-width: 0; max-width: none; overflow: hidden;
-      }
-      .global-auth .anonymous-pill.authenticated #authStatusText {
-        display: block; min-width: 0; max-width: 100%;
-        overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
-      }
-      .global-auth .anonymous-pill.authenticated .dot { flex: 0 0 auto; }
-      .global-auth #logoutButton { flex: 0 0 auto; }
-    }
-    @media (max-width: 390px) {
-      .global-auth:has(.anonymous-pill.authenticated) { max-width: 49vw; }
-    }
+    
+
+    
+
 
     /* Mobile auth buttons: restore compact visual size while keeping tap area accessible */
-    @media (max-width: 900px) {
-      .global-auth .button, .global-auth .button:not(.event-button) {
-        min-height: 34px;
-        padding: 7px 10px;
-        font-size: .78rem;
-        touch-action: manipulation;
-      }
-      .global-auth .button::before {
-        content: "";
-        position: absolute;
-        inset: -5px -2px;
-      }
-    }
-    @media (max-width: 390px) {
-      .global-auth .button, .global-auth .button:not(.event-button) {
-        padding: 7px 8px;
-        font-size: .75rem;
-      }
-    }
+    
+
+    
+
 
     /* Unified floating section headings and elevated clickable controls */
     .panel { overflow: visible; padding-top: 22px; }
@@ -896,11 +802,9 @@
     }
     .event-button:focus-visible, .button:focus-visible {
       outline-offset: 3px;
-    }
-    .anonymous-pill .dot, .auth-indicator .auth-dot, .status-dot {
+    }.status-dot {
       box-shadow: 0 0 0 3px rgba(245,164,77,.10), 0 0 9px rgba(245,164,77,.2);
-    }
-    .anonymous-pill.authenticated .dot, .status-pill[data-state="ready"] .status-dot {
+    }.status-pill[data-state="ready"] .status-dot {
       box-shadow: 0 0 0 3px rgba(105,212,162,.1), 0 0 9px rgba(105,212,162,.2);
     }
     @media (prefers-reduced-motion: reduce) {

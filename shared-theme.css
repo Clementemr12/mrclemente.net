@@ -278,3 +278,8 @@ html[data-theme="dark"] .testing-page :is(.event-button,.button):focus-visible {
   .global-auth:has(.anonymous-pill.authenticated) { max-width: 49vw; }
   .global-auth .button:not(.event-button) { padding: 7px 8px; font-size: .75rem; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .global-auth .button:not(.event-button) { transition: none; }
+  .global-auth .button:not(.event-button):hover { transform: none; }
+}

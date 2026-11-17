@@ -156,10 +156,6 @@ body.home-page .page.account-home {
 
 .home-action:hover .home-action-arrow { transform: translateX(4px); }
 
-/* Orange for anonymous; green for authenticated. */
-body.home-page .global-auth .anonymous-pill .dot { background: #e5a04c; }
-body.home-page .global-auth .anonymous-pill.authenticated .dot { background: #58d69a; }
-
 @media (max-width: 1200px) and (min-width: 901px) {
   .home-actions { gap: 20px; }
   .home-action { grid-template-columns: 58px minmax(0, 1fr) 20px; column-gap: 17px; padding: 23px; }

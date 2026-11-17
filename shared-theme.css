@@ -154,3 +154,127 @@ html[data-theme="dark"] .testing-page :is(.event-button,.button):focus-visible {
 @media (prefers-reduced-motion: reduce) {
   :is(.panel,.status-card,.stat) { transition: none; }
 }
+
+/* Unified authentication controls on Home, Web SDK and Survey Embed.
+   All three pages use .anonymous-pill/.dot and the same button classes. */
+.global-auth {
+  position: fixed;
+  top: 18px;
+  right: 28px;
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  max-width: calc(100vw - 36px);
+}
+.global-auth [hidden] { display: none !important; }
+.global-auth .anonymous-pill {
+  display: inline-flex;
+  flex: 0 1 auto;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: min(280px, 40vw);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #c9d1dd;
+  font-size: .82rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.global-auth .anonymous-pill .dot {
+  display: inline-block;
+  flex: 0 0 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e5a04c;
+  box-shadow: 0 0 0 3px rgba(245,164,77,.10), 0 0 9px rgba(245,164,77,.2);
+}
+.global-auth .anonymous-pill.authenticated .dot {
+  background: #58d69a;
+  box-shadow: 0 0 0 3px rgba(105,212,162,.10), 0 0 9px rgba(105,212,162,.2);
+}
+.global-auth #authStatusText {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.global-auth .button:not(.event-button) {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  width: auto;
+  padding: 7px 11px;
+  border: 1px solid #434a55;
+  border-radius: 9px;
+  background: #30353d;
+  box-shadow: 0 3px 7px rgba(0,0,0,.22), 0 1px 2px rgba(0,0,0,.15);
+  color: #f0f4fa;
+  font-size: .78rem;
+  font-weight: 650;
+  line-height: 1.25;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.global-auth .button:not(.event-button):hover:not(:disabled) {
+  background: #393f49;
+  border-color: #687381;
+  transform: translateY(-1px);
+}
+.global-auth .button:not(.event-button):focus-visible {
+  outline: 2px solid #8ebde7;
+  outline-offset: 3px;
+}
+@media (max-width: 900px) {
+  .global-auth {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    gap: 5px;
+    max-width: calc(100vw - 24px);
+  }
+  .global-auth .anonymous-pill {
+    max-width: 94px;
+    font-size: .72rem;
+  }
+  .global-auth .anonymous-pill:not(.authenticated) #authStatusText {
+    display: none;
+  }
+  .global-auth .anonymous-pill:not(.authenticated) { gap: 0; }
+  .global-auth:has(.anonymous-pill.authenticated) {
+    max-width: min(52vw, 225px);
+  }
+  .global-auth .anonymous-pill.authenticated {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+  }
+  .global-auth .anonymous-pill.authenticated #authStatusText { display: block; }
+  .global-auth .button:not(.event-button) {
+    min-height: 34px;
+    padding: 7px 10px;
+    font-size: .78rem;
+    touch-action: manipulation;
+  }
+  .global-auth .button::before {
+    content: "";
+    position: absolute;
+    inset: -5px -2px;
+  }
+}
+@media (max-width: 390px) {
+  .global-auth { right: 8px; gap: 3px; }
+  .global-auth:has(.anonymous-pill.authenticated) { max-width: 49vw; }
+  .global-auth .button:not(.event-button) { padding: 7px 8px; font-size: .75rem; }
+}

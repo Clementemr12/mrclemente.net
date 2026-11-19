@@ -794,7 +794,9 @@
         document.addEventListener(eventName, () => {
           addHistory("SDK EVENT", eventName);
           if (eventName === "apptentive:love-dialog:yes") {
-            sendEvent("LD_follow_up");
+            // The SDK emits this DOM event before recording its internal Yes count.
+            // Defer engagement to the next task so Alchemer targeting sees the Yes.
+            window.setTimeout(() => sendEvent("LD_follow_up"), 0);
           }
         });
       });

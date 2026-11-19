@@ -793,6 +793,9 @@
       ].forEach(eventName => {
         document.addEventListener(eventName, () => {
           addHistory("SDK EVENT", eventName);
+          if (eventName === "apptentive:love-dialog:launch") {
+            sendEvent("LD_follow_up");
+          }
         });
       });
 

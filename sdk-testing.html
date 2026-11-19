@@ -8,6 +8,10 @@
     <link rel="icon" href="./logo.ico" sizes="any">
   <link rel="stylesheet" href="./site-base.css?v=20261116-auth-unified">
   <link rel="stylesheet" href="./shared-theme.css?v=20261116-auth-unified">
+  <style>
+    /* Prevent a flash of the built-in Love Dialog Thank You before it is removed. */
+    #apptentive-note-6ad8ec2802189d006e088a43 { display: none !important; }
+  </style>
 
   <script>
     // Testing mode: discard only recognizable Apptentive localStorage entries
@@ -650,6 +654,36 @@
       }
     }
 
+    // The Love Dialog's Yes action automatically displays Alchemer's built-in
+    // Thank You TextModal. Suppress only that known interaction, leaving other
+    // prompts (including LD_follow_up) untouched.
+    function suppressDefaultLoveDialogThankYou() {
+      const thankYouId = "apptentive-note-6ad8ec2802189d006e088a43";
+      const removeThankYou = () => {
+        const note = document.getElementById(thankYouId);
+        if (!note) return;
+        note.remove();
+        if (!document.querySelector("apptentive-note")) {
+          document.body.classList.remove("apptentive-note-scroll-lock");
+        }
+        addHistory("INTERACTION", "Suppressed built-in Love Dialog Thank You; LD_follow_up can display instead.");
+      };
+
+      const observer = new MutationObserver(records => {
+        for (const record of records) {
+          for (const node of record.addedNodes) {
+            if (node.nodeType === 1 &&
+                (node.id === thankYouId || node.querySelector?.("#" + thankYouId))) {
+              removeThankYou();
+              return;
+            }
+          }
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+      removeThankYou();
+    }
+
     function sendEvent(eventName, isLoveDialog) {
       if (!state.sdkReady || !state.conversationRequested) {
         addHistory("ERROR", "Cannot send '" + eventName + "' before the anonymous conversation has been requested.");
@@ -688,6 +722,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+      suppressDefaultLoveDialogThankYou();
       disableSdkControls();
 
       document.querySelectorAll(".sdk-action").forEach(button => {

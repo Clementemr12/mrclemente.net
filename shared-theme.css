@@ -283,3 +283,15 @@ html[data-theme="dark"] .testing-page :is(.event-button,.button):focus-visible {
   .global-auth .button:not(.event-button) { transition: none; }
   .global-auth .button:not(.event-button):hover { transform: none; }
 }
+
+/* Five-page navigation: keep all tabs accessible on narrow screens. */
+@media (max-width: 900px) {
+  .header-inner .brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    padding-bottom: 4px;
+  }
+  .header-inner .brand .top-link { flex: 0 0 auto; }
+}

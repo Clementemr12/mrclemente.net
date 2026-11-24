@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1d2026">
+  <title>Sandbox — Matt's Web App</title>
+    <link rel="icon" href="./logo.ico" sizes="any">
+  <link rel="stylesheet" href="./survey-embed.css?v=20261116-auth-unified">
+  <link rel="stylesheet" href="./shared-theme.css?v=20261124-scroll-tests">
+  <script src="https://cdn.auth0.com/js/auth0-spa-js/2.18/auth0-spa-js.production.js" defer></script>
+  <style>
+    .scroll-test-intro { min-height: 48vh; }
+    .scroll-test-intro .helper { font-size: .88rem; line-height: 1.6; }
+    .scroll-test-survey { min-height: 600px; background: #fff; color: #222; color-scheme: light; border-radius: 8px; padding: 16px; }
+    .scroll-test-end { min-height: 50vh; }
+    @media (max-width: 620px) { .scroll-test-survey { padding: 8px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="sidebar-brand" href="./index.html">
+        <img src="./Lucario-Icon.png" alt="" width="48" height="48">
+        <span><strong>Matt's Web App</strong><small>Web - Matt's Test Org</small></span>
+      </a>
+      <nav class="brand" aria-label="Main navigation">
+        <a class="top-link" href="./index.html">⌂ &nbsp; Home</a>
+        <a class="top-link" href="./sdk-testing.html">◫ &nbsp; Web SDK</a>
+        <a class="top-link" href="./survey-embed.html">▤ &nbsp; Survey Embed</a>
+        <a class="top-link" href="./scroll-lock.html">↕ &nbsp; Scroll Lock</a>
+        <a class="top-link active-link" href="./sandbox.html" aria-current="page">◇ &nbsp; Sandbox</a>
+      </nav>
+      <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" aria-expanded="true">☰ <span class="sidebar-toggle-text">Collapse sidebar</span></button>
+    </div>
+  </header>
+  <div class="global-auth" aria-label="Account actions">
+    
+    <span class="anonymous-pill" id="authStatus"><span class="dot"></span><span id="authStatusText">Anonymous</span></span>
+    <button class="button button-secondary button-small" id="loginButton" type="button">Log In</button>
+    <button class="button button-secondary button-small" id="signupButton" type="button">Sign Up</button>
+    <button class="button button-secondary button-small" id="logoutButton" type="button" hidden>Log Out</button>
+  </div>
+  <main class="page testing-page">
+    <section class="heading page-heading">
+      <div><h1>Sandbox</h1><p>Test JavaScript-embedded Alchemer surveys</p></div>
+      <span class="environment">● &nbsp; Testing environment</span>
+    </section>
+    <section class="panel scroll-test-intro">
+      <div class="panel-heading"><h2>Scroll Test</h2></div>
+      <p class="helper">Scroll restoration: <strong>Browser default</strong></p>
+      <p class="helper">Scroll down to the survey, advance through it or refresh the browser, and observe the page's scroll position.</p>
+    </section>
+    <section class="panel">
+      <div class="panel-heading"><h2>Survey Embed Area</h2></div>
+      <div class="scroll-test-survey">
+        <script type="text/javascript" >document.write('<script src="http' + ( ("https:" == document.location.protocol) ? "s" : "") + '://survey.alchemer.com/s3/8898976/53b5ebedefe9?__output=embedjs&__ref=' + escape(document.location.href) + '" type="text/javascript" ></scr' + 'ipt>');</script><noscript>Simplify and automate your performance and professional development review process with <a href="https://www.alchemer.com/">Alchemer</a>. <a href="http://survey.alchemer.com/s3/8898976/53b5ebedefe9??jsfallback=true">Please take my survey now</a></noscript><style>.sg-survey{display:none; }</style>
+      </div>
+    </section>
+    <section class="panel scroll-test-end">
+      <div class="panel-heading"><h2>End of Survey</h2></div>
+      <p class="helper">Extra page space for testing scroll position.</p>
+    </section>
+  </main>
+  <script>
+    document.getElementById("sidebarToggle").addEventListener("click", () => {
+      const collapsed = document.body.classList.toggle("sidebar-collapsed");
+      document.getElementById("sidebarToggle").setAttribute("aria-expanded", String(!collapsed));
+      document.getElementById("sidebarToggle").setAttribute("aria-label", collapsed ? "Expand sidebar" : "Collapse sidebar");
+    });
+  </script>
+  <script src="./auth.js?v=20261116-landing" defer></script>
+</body>
+</html>
